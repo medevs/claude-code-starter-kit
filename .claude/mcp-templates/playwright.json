@@ -1,0 +1,12 @@
+{
+  "name": "playwright",
+  "description": "Browser automation and UI testing — navigate pages, take screenshots, run accessibility audits, test user flows",
+  "config": {
+    "mcpServers": {
+      "playwright": {
+        "command": "npx",
+        "args": ["-y", "@anthropic-ai/mcp-server-playwright"]
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "permissions": {
+    "allow": [
+      "Read", "Glob", "Grep", "Edit", "Write",
+      "Bash(git status*)", "Bash(git diff*)", "Bash(git log*)",
+      "Bash(git add*)", "Bash(git commit*)", "Bash(git branch*)",
+      "Bash(git checkout*)", "Bash(git switch*)", "Bash(git stash*)",
+      "Bash(git fetch*)", "Bash(git merge*)", "Bash(git rebase*)",
+      "Bash(git show*)", "Bash(git blame*)", "Bash(git tag*)",
+      "Bash(npm test*)", "Bash(npm run test*)", "Bash(npm run lint*)", "Bash(npm run build*)",
+      "Bash(pnpm test*)", "Bash(pnpm run test*)", "Bash(pnpm run lint*)", "Bash(pnpm run build*)", "Bash(pnpm exec*)",
+      "Bash(yarn test*)", "Bash(yarn run test*)", "Bash(yarn run lint*)", "Bash(yarn run build*)",
+      "Bash(bun test*)", "Bash(bun run test*)", "Bash(bun run lint*)", "Bash(bun run build*)",
+      "Bash(npx tsc*)", "Bash(npx vitest*)", "Bash(npx jest*)",
+      "Bash(npx biome*)", "Bash(npx eslint*)", "Bash(npx prettier*)",
+      "Bash(uv run pytest*)", "Bash(uv run mypy*)", "Bash(uv run ruff*)", "Bash(uv run pyright*)",
+      "Bash(python -m pytest*)",
+      "Bash(cargo test*)", "Bash(cargo check*)", "Bash(cargo clippy*)", "Bash(cargo build*)",
+      "Bash(go test*)", "Bash(go vet*)", "Bash(go build*)",
+      "Bash(cat *)", "Bash(ls *)", "Bash(head *)", "Bash(tail *)", "Bash(wc *)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(rm *)",
+      "Bash(docker *)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)*", "Bash(rm -rf ~)*", "Bash(rm -rf .)*",
+      "Bash(git push --force)*", "Bash(git push -f)*",
+      "Bash(git reset --hard)*", "Bash(git clean -f)*",
+      "Bash(chmod 777*)",
+      "Bash(mkfs*)",
+      "Bash(:(){ :|:&};:)*"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/block-dangerous-commands.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/auto-format.sh",
+            "timeout": 30000
+          }
+        ]
+      }
+    ]
+  }
+}

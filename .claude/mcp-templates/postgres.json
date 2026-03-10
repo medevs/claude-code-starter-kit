@@ -1,0 +1,16 @@
+{
+  "name": "postgres",
+  "description": "PostgreSQL database access — run queries, inspect schema, manage migrations",
+  "config": {
+    "mcpServers": {
+      "postgres": {
+        "command": "npx",
+        "args": ["-y", "@anthropic-ai/mcp-server-postgres"],
+        "env": {
+          "DATABASE_URL": "${DATABASE_URL}"
+        }
+      }
+    }
+  },
+  "setup_notes": "Set DATABASE_URL in your environment (e.g., postgresql://user:pass@localhost:5432/dbname)"
+}

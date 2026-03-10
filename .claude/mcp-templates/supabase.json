@@ -1,0 +1,17 @@
+{
+  "name": "supabase",
+  "description": "Supabase database management — schema design, queries, migrations, auth configuration",
+  "config": {
+    "mcpServers": {
+      "supabase": {
+        "command": "npx",
+        "args": ["-y", "supabase-mcp-server"],
+        "env": {
+          "SUPABASE_URL": "${SUPABASE_URL}",
+          "SUPABASE_SERVICE_ROLE_KEY": "${SUPABASE_SERVICE_ROLE_KEY}"
+        }
+      }
+    }
+  },
+  "setup_notes": "Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in your environment or .env file"
+}

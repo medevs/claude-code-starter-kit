@@ -1,0 +1,16 @@
+{
+  "name": "github",
+  "description": "GitHub API integration — issues, pull requests, actions, repository management",
+  "config": {
+    "mcpServers": {
+      "github": {
+        "command": "npx",
+        "args": ["-y", "@anthropic-ai/mcp-server-github"],
+        "env": {
+          "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+        }
+      }
+    }
+  },
+  "setup_notes": "Set GITHUB_TOKEN in your environment. Create a token at https://github.com/settings/tokens"
+}

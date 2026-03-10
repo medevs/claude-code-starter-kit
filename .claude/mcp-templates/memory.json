@@ -1,0 +1,12 @@
+{
+  "name": "memory",
+  "description": "Persistent memory across sessions — store and retrieve knowledge, notes, and context",
+  "config": {
+    "mcpServers": {
+      "memory": {
+        "command": "npx",
+        "args": ["-y", "@anthropic-ai/mcp-server-memory"]
+      }
+    }
+  }
+}

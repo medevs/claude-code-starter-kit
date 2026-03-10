@@ -1,0 +1,12 @@
+{
+  "name": "filesystem",
+  "description": "Extended filesystem operations — directory listing, file search, bulk operations",
+  "config": {
+    "mcpServers": {
+      "filesystem": {
+        "command": "npx",
+        "args": ["-y", "@anthropic-ai/mcp-server-filesystem", "--root", "."]
+      }
+    }
+  }
+}
