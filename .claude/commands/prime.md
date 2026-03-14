@@ -1,9 +1,17 @@
 ---
-description: Load and understand codebase context
+description: Load and understand codebase context (optionally scoped to a specific area)
+argument-hint: [scope]
 allowed-tools: Read, Glob, Grep, Bash(git:*)
 ---
 
 # Prime: Load Project Context
+
+## Scope
+
+**Scope**: $ARGUMENTS
+
+- If a scope is provided (e.g., `frontend`, `api`, `auth`), focus priming on that area — read only files, entry points, and patterns relevant to the scope. Still read CLAUDE.md and project-level config, but skip unrelated directories.
+- If no scope is provided, perform full project priming.
 
 ## Objective
 
@@ -18,6 +26,8 @@ List all tracked files and directory structure:
 
 Show directory structure (depth 3):
 !`find . -maxdepth 3 -not -path '*/node_modules/*' -not -path '*/.git/*' -not -path '*/dist/*' -not -path '*/__pycache__/*' -not -path '*/build/*' | head -80`
+
+If a scope was provided, filter the above to focus on directories and files matching the scope.
 
 ### 2. Detect Tech Stack
 
