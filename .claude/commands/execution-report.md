@@ -41,6 +41,9 @@ Write the report to: `.plans/reports/{feature}-report.md`
 - **Plan**: `.plans/{plan-file}.md`
 - **Date**: {date}
 - **Commits**: {list of commit hashes}
+- **Files added**: [list with paths]
+- **Files modified**: [list with paths]
+- **Lines changed**: +X / -Y
 
 ## Validation Results
 | Check       | Status | Details              |
@@ -56,18 +59,33 @@ Write the report to: `.plans/reports/{feature}-report.md`
 ## Challenges
 - [Difficulties encountered and how they were resolved]
 
-## Divergences: Planned vs Actual
+## Divergences from Plan
 
-| Task | Planned | Actual | Classification |
-|------|---------|--------|----------------|
-| [task] | [what plan said] | [what was done] | Justified / Problematic |
+For each divergence:
+
+**[Divergence Title]**
+- **Planned**: [what the plan specified]
+- **Actual**: [what was implemented instead]
+- **Reason**: [why this divergence occurred]
+- **Type**: Better approach found | Plan assumption wrong | Security concern | Performance issue | Missing context
+- **Classification**: Justified / Problematic
 
 ## Skipped Items
 - [Any planned tasks that were not implemented, with reasons]
 
 ## Recommendations
-- [Suggestions for improving the plan template, workflow, or codebase]
-- [Follow-up tasks that should be tracked]
+
+### Plan Command Improvements
+- [What the plan should have included or clarified]
+
+### Execute Command Improvements
+- [Execution workflow changes needed]
+
+### CLAUDE.md Additions
+- [New rules, patterns, or anti-patterns to document]
+
+### New Commands or Skills Needed
+- [Manual processes that could be automated]
 ```
 
 ### 4. Summary

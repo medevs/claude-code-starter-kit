@@ -33,7 +33,20 @@ gh issue view $ARGUMENTS
 git log --oneline -20 -- [relevant-paths]
 ```
 
-### 3. Identify Root Cause
+### 3. Review Recent History
+
+Check recent changes to affected areas:
+```bash
+git log --oneline -20 -- [relevant-paths]
+git log --diff-filter=M --oneline -10 -- [relevant-paths]
+```
+
+Look for:
+- Recent modifications to affected code
+- Related bug fixes that may have introduced the issue
+- Refactorings near the affected area
+
+### 4. Identify Root Cause
 
 Analyze the code to determine:
 - What is the actual bug?
@@ -41,14 +54,14 @@ Analyze the code to determine:
 - What was the original intent of the code?
 - Are there related issues or symptoms?
 
-### 4. Assess Impact
+### 5. Assess Impact
 
 - How widespread is the issue?
 - What features are affected?
 - Are there data corruption or security implications?
 - Severity: Critical / High / Medium / Low
 
-### 5. Design Fix
+### 6. Design Fix
 
 - What needs to change and in which files?
 - What tests should verify the fix?
@@ -88,6 +101,8 @@ Save to: `.plans/rca-$ARGUMENTS.md`
 2. [Step 2]
 3. [Observe the bug]
 
+**Reproduction Verified**: Yes / No
+
 ## Root Cause
 
 ### Affected Code
@@ -109,6 +124,9 @@ Save to: `.plans/rca-$ARGUMENTS.md`
 ### Files to Modify
 1. `path/to/file` — [what changes and why]
 2. `path/to/file` — [what changes and why]
+
+### Alternative Approaches
+[Other solutions considered and why the proposed approach is preferred]
 
 ### Testing Requirements
 1. Test that verifies the fix works

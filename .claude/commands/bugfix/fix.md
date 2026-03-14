@@ -97,3 +97,12 @@ fix(<scope>): <description>
 
 Fixes #$ARGUMENTS
 ```
+
+### Optional: Update GitHub Issue
+
+If the bug came from a GitHub issue:
+```bash
+gh issue comment $ARGUMENTS --body "Fix implemented. Ready for review."
+```
+
+**Note**: `Fixes #$ARGUMENTS` in the commit message auto-closes the issue when merged.

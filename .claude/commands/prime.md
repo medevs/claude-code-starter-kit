@@ -16,6 +16,9 @@ Build comprehensive understanding of the codebase by analyzing structure, docume
 List all tracked files and directory structure:
 !`git ls-files`
 
+Show directory structure (depth 3):
+!`find . -maxdepth 3 -not -path '*/node_modules/*' -not -path '*/.git/*' -not -path '*/dist/*' -not -path '*/__pycache__/*' -not -path '*/build/*' | head -80`
+
 ### 2. Detect Tech Stack
 
 Read configuration files to identify the stack:
@@ -75,6 +78,11 @@ Provide a structured summary:
 - Build tools and package managers
 - Testing frameworks
 - Linting/formatting tools
+
+### Core Principles
+- Code style and conventions observed
+- Documentation standards in use
+- Testing approach and patterns
 
 ### Development Commands
 - How to install, run, test, lint, build

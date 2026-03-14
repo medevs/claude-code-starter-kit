@@ -14,6 +14,13 @@ If no arguments provided, review all staged changes (`git diff --cached`). If no
 
 ## Process
 
+### 0. Gather Codebase Context
+
+Read project standards before reviewing:
+- `CLAUDE.md` and `.claude/rules/` — project conventions
+- `README.md` — project overview
+- Key architectural files for pattern understanding
+
 ### 1. Gather Changes
 
 ```bash
@@ -63,7 +70,17 @@ For each modified file, evaluate:
 - Is the code readable without excessive comments?
 - Any code duplication that should be extracted?
 
-### 3. Report Findings
+### 3. Verify Issues Are Real
+
+Before reporting, validate findings:
+- Run specific tests to confirm suspected logic errors
+- Confirm type errors are legitimate (not false positives)
+- Validate security concerns with full context
+- Check if performance issues are in hot paths or rarely-executed code
+
+**Do NOT report speculative issues.** Every finding must be verifiable.
+
+### 4. Report Findings
 
 Save the review to: `.plans/reviews/{date}-{scope}.md`
 
@@ -95,10 +112,10 @@ Group issues by severity:
 - **Verdict**: ✅ Approve / 🟡 Approve with comments / 🔴 Request changes
 ```
 
-### Sub-Agent Delegation
+### 5. Sub-Agent Delegation
 
 When the `Agent` tool is available, delegate the multi-dimensional analysis (Step 2) to the `code-reviewer` agent. Launch it with the diff or file contents and let it perform correctness, security, performance, test coverage, and style analysis in parallel. Use the agent's findings to populate the review report.
 
-### 4. Offer Fixes
+### 6. Offer Fixes
 
 For critical and warning issues, suggest running `/code-review-fix .plans/reviews/{file}.md` to apply fixes.

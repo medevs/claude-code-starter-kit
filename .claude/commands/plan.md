@@ -30,12 +30,27 @@ I want to <action/goal>
 So that <benefit/value>
 ```
 
+**Problem Statement:**
+<Clearly define the specific problem or opportunity this feature addresses>
+
+**Solution Statement:**
+<Describe the proposed solution approach>
+
 ### Phase 2: Codebase Intelligence Gathering
 
 **Use sub-agents for parallel research when beneficial.** Launch the `researcher` agent for parallel codebase research when the codebase has 50+ files.
 
 1. **Project Structure Analysis** — Detect languages, frameworks, directory patterns, config files
-2. **Pattern Recognition** — Search for similar implementations, identify naming conventions, error handling, logging patterns. Check CLAUDE.md for project rules.
+2. **Pattern Recognition** (Use sub-agents when beneficial)
+   - Search for similar implementations in codebase
+   - Identify coding conventions:
+     - Naming patterns (CamelCase, snake_case, kebab-case)
+     - File organization and module structure
+     - Error handling approaches (typed errors vs exceptions, early returns)
+     - Logging patterns and standards
+   - Extract common patterns for the feature's domain
+   - Document anti-patterns to avoid
+   - Check CLAUDE.md and `.claude/rules/` for project-specific rules
 3. **Dependency Analysis** — Catalog relevant libraries, check versions, find internal documentation
 4. **Testing Patterns** — Identify test framework, find similar test examples, note coverage requirements
 5. **Integration Points** — Map files needing updates, new files to create, registration patterns
@@ -54,6 +69,13 @@ So that <benefit/value>
 - Locate implementation examples
 - Identify common gotchas and breaking changes
 
+**Compile Research References:**
+```markdown
+## Relevant Documentation
+- [Library Docs](URL#section) — Why: [needed for X]
+- [Framework Guide](URL#section) — Why: [shows integration pattern]
+```
+
 ### Phase 4: Strategic Thinking
 
 - How does this feature fit into the existing architecture?
@@ -69,13 +91,20 @@ Write the plan to `.plans/{kebab-case-feature-name}.md` using this structure:
 ```markdown
 # Feature: <feature-name>
 
-Read all referenced files before implementing. Validate patterns against the actual codebase.
+The following plan should be complete, but validate documentation and codebase patterns before implementing.
+Pay special attention to naming of existing utils, types, and models. Import from the right files.
 
 ## Feature Description
 <Detailed description, purpose, and user value>
 
 ## User Story
 As a <user> I want to <goal> so that <benefit>
+
+## Problem Statement
+<Clearly define the specific problem or opportunity>
+
+## Solution Statement
+<Describe the proposed solution approach>
 
 ## Feature Metadata
 - **Type**: [New Capability/Enhancement/Refactor/Bug Fix]
@@ -124,6 +153,16 @@ As a <user> I want to <goal> so that <benefit>
 
 Each task is atomic and independently testable. Execute in order.
 
+### Task Format
+
+Use ACTION keywords for clarity:
+- **CREATE**: New files or components
+- **UPDATE**: Modify existing files
+- **ADD**: Insert new functionality into existing code
+- **REMOVE**: Delete deprecated code
+- **REFACTOR**: Restructure without changing behavior
+- **MIRROR**: Copy pattern from elsewhere in codebase
+
 ### Task 1: {ACTION} {target_file}
 - **IMPLEMENT**: {specific detail}
 - **PATTERN**: {reference to existing pattern — file:line}
@@ -160,11 +199,11 @@ Each task is atomic and independently testable. Execute in order.
 ### Level 3: Tests
 <commands from CLAUDE.md>
 
-### Level 4: Build
-<commands from CLAUDE.md>
+### Level 4: Manual Verification
+<feature-specific manual testing — API calls, UI testing, CLI execution>
 
-### Level 5: Manual Verification
-<feature-specific checks>
+### Level 5: Build & Additional Validation
+<Build commands and any additional checks (MCP servers, e2e tools)>
 
 ---
 
@@ -174,6 +213,16 @@ Each task is atomic and independently testable. Execute in order.
 - [ ] Test coverage ≥ 80% for new code
 - [ ] Code follows project conventions
 - [ ] No regressions
+
+---
+
+## COMPLETION CHECKLIST
+- [ ] All tasks completed in order
+- [ ] Each task validation passed
+- [ ] All validation commands executed successfully
+- [ ] Full test suite passes
+- [ ] No linting or type checking errors
+- [ ] Acceptance criteria all met
 ```
 
 ## Sub-Agent Delegation
@@ -193,3 +242,16 @@ Report:
 - Complexity assessment
 - Key risks or considerations
 - Confidence score (X/10) for one-pass implementation success
+
+## Quality Criteria
+
+### Context Completeness
+- [ ] All necessary patterns identified and documented
+- [ ] Integration points clearly mapped
+- [ ] Every task has an executable validation command
+
+### Implementation Ready
+- [ ] Another agent could execute without additional context
+- [ ] Tasks ordered by dependency (top-to-bottom)
+- [ ] Each task is atomic and independently testable
+- [ ] Pattern references include specific file:line numbers

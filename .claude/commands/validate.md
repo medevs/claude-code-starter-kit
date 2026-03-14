@@ -42,6 +42,15 @@ Run the build command to verify the project compiles/bundles.
 
 **Expected**: Build succeeds without errors.
 
+#### Level 5: Runtime Validation (if applicable)
+If the project has a dev server or runtime entry point:
+- Start it in background
+- Run smoke test (health endpoint, CLI help, basic execution)
+- Stop the server
+- Report results
+
+Skip if no runtime validation is configured in CLAUDE.md.
+
 ### 3. Summary Report
 
 ```

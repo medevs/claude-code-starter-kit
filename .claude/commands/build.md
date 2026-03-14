@@ -64,6 +64,16 @@ Create an atomic git commit for the completed feature.
 
 ---
 
+## Step 6: Report (Optional)
+
+Generate a post-implementation reflection:
+
+.claude/commands/execution-report.md
+
+**Note**: Recommended for complex features. Skip for trivial changes.
+
+---
+
 ## Final Summary
 
 ```markdown

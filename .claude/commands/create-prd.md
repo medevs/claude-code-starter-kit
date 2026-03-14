@@ -88,6 +88,15 @@ Break into 3-4 phases, each with:
 **13. Risks & Mitigations**
 - 3-5 key risks with specific mitigation strategies
 
+**14. Future Considerations**
+- Post-MVP enhancements and scaling plans
+- Integration opportunities
+- Advanced features deferred to later phases
+
+**15. Appendix** (if applicable)
+- Related documents and references
+- Key dependencies with documentation links
+
 ## Instructions
 
 ### 1. Extract Requirements
@@ -113,6 +122,12 @@ Break into 3-4 phases, each with:
 - ✅ Technology choices are justified
 - ✅ Implementation phases are actionable
 - ✅ Success criteria are measurable
+
+### Style Guidelines
+- **Tone**: Professional, clear, action-oriented
+- **Format**: Use markdown extensively (headings, lists, code blocks, tables)
+- **Checkboxes**: Use ✅ for in-scope, ❌ for out-of-scope
+- **Specificity**: Prefer concrete examples over abstract descriptions
 
 ## After Creation
 

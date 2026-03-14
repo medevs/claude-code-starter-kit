@@ -55,6 +55,8 @@ Execute ALL validation commands from the plan in order:
 **Level 4**: Build
 **Level 5**: Manual Verification
 
+**CRITICAL**: Never skip a failing validation. Every level must pass before completion.
+
 If any command fails:
 1. Fix the issue
 2. Re-run the command
@@ -105,5 +107,7 @@ All changes validated. Run `/commit` to commit.
 
 - If the plan has errors or missing context: document and work around them
 - If you need to deviate from the plan: explain the reason clearly
+- Track all deviations with: Planned vs Actual vs Reason
+- Deviation types: Better approach found | Plan assumption wrong | Security concern | Performance issue | Missing context
 - If a test fails and the fix is non-obvious: describe the issue for review
 - If blocked on external dependencies: document and continue with what's possible
