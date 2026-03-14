@@ -15,8 +15,6 @@
       "Bash(npx biome*)", "Bash(npx eslint*)", "Bash(npx prettier*)",
       "Bash(uv run pytest*)", "Bash(uv run mypy*)", "Bash(uv run ruff*)", "Bash(uv run pyright*)",
       "Bash(python -m pytest*)",
-      "Bash(cargo test*)", "Bash(cargo check*)", "Bash(cargo clippy*)", "Bash(cargo build*)",
-      "Bash(go test*)", "Bash(go vet*)", "Bash(go build*)",
       "Bash(cat *)", "Bash(ls *)", "Bash(head *)", "Bash(tail *)", "Bash(wc *)"
     ],
     "ask": [

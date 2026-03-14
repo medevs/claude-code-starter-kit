@@ -20,10 +20,10 @@ Turn Claude Code from a blank canvas into a structured development engine. Go fr
 | Safety hooks | 2 | Dangerous command blocker + auto-formatter |
 | Permission tiers | 3 | allow / ask / deny in settings.json |
 | MCP templates | 7 | Playwright, Supabase, GitHub, PostgreSQL, Memory, Fetch, Filesystem |
-| Rule templates | 6 | Next.js, FastAPI, Hono, React Native, CLI, AI Agents |
-| Skill templates | 5 | React, API Design, Database, Edge API, Agent Development |
+| Rule templates | 4 | Next.js, FastAPI, CLI, AI Agents |
+| Skill templates | 4 | React, API Design, Database, Agent Development |
 
-**Framework-agnostic core** with injectable specializations. Works for any project.
+**JS/TS + Python focused** with injectable specializations for web apps, APIs, CLIs, and AI agents.
 
 ---
 
@@ -205,18 +205,15 @@ claude-code-starter-kit/
 │   ├── TROUBLESHOOTING.md            #   Common issues and platform fixes
 │   └── FAQ.md                         #   Frequently asked questions
 └── templates/                         # Injectable specializations
-    ├── rules/                         # 6 framework-specific rule templates
+    ├── rules/                         # 4 framework-specific rule templates
     │   ├── nextjs.md                  #   Next.js 15+, React 19+, Tailwind v4
     │   ├── fastapi.md                 #   FastAPI, Pydantic 2.x, Python 3.12+
-    │   ├── hono.md                    #   Hono, edge runtimes, Workers
-    │   ├── react-native.md            #   React Native, Expo
     │   ├── cli-tool.md                #   CLI applications
     │   └── ai-agents.md              #   LLM-powered applications
-    └── skills/                        # 5 framework-specific skill templates
+    └── skills/                        # 4 framework-specific skill templates
         ├── react-patterns/            #   React 19, hooks, Server Components
         ├── api-design/                #   REST conventions, pagination
         ├── database/                  #   Schema design, query optimization
-        ├── edge-api/                  #   Edge runtimes, Workers, KV/D1/R2
         └── agent-development/         #   Tool design, MCP, prompting
 ```
 
@@ -230,8 +227,6 @@ claude-code-starter-kit/
 |----------|-----------|------------|
 | `nextjs.md` | Next.js 15+ | App Router, Server/Client Components, React 19, Tailwind v4 |
 | `fastapi.md` | FastAPI 0.115+ | Pydantic 2.x, SQLAlchemy 2.0, async patterns, Python 3.12+ |
-| `hono.md` | Hono | Edge runtimes, Cloudflare Workers, Bun, serverless |
-| `react-native.md` | React Native | Expo, cross-platform, native modules |
 | `cli-tool.md` | CLI apps | Argument parsing, output formatting, exit codes |
 | `ai-agents.md` | AI/LLM | Tool design, prompt engineering, MCP integration |
 
@@ -242,7 +237,6 @@ claude-code-starter-kit/
 | `react-patterns/` | React 19 | Hooks, composition, Server Components, accessibility |
 | `api-design/` | REST APIs | Validation, pagination, error handling, rate limiting |
 | `database/` | Databases | Schema design, migrations, query optimization |
-| `edge-api/` | Edge runtimes | Cloudflare Workers, KV/D1/R2, performance |
 | `agent-development/` | AI agents | Tool design, prompt engineering, MCP |
 
 ---
@@ -277,7 +271,7 @@ claude-code-starter-kit/
 1. **Context is King** — Every file maximizes relevant context with minimum token waste
 2. **Deterministic Safety** — Hooks block dangerous operations 100% of the time
 3. **One-Pass Success** — Plans contain ALL information needed for first-try implementation
-4. **Framework-Agnostic Core** — Universal rules work for ANY project; specializations are injected
+4. **Universal Core, Targeted Templates** — Core rules work for any JS/TS or Python project; specializations are injected
 5. **Progressive Disclosure** — Start with `/setup`, learn commands as needed, customize over time
 6. **Agent-First Design** — Subagents handle parallel research and validation, keeping main context clean
 7. **Progressive Depth** — Skills load overview first, deep references only when needed

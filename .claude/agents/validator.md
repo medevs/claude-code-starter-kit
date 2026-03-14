@@ -38,16 +38,9 @@ tools:
   - Bash(biome *)
   - Bash(eslint*)
   - Bash(prettier*)
-  - Bash(cargo test*)
-  - Bash(cargo check*)
-  - Bash(cargo clippy*)
-  - Bash(go test*)
-  - Bash(go vet*)
   - Bash(ls *)
   - Bash(cat package.json)
   - Bash(cat pyproject.toml)
-  - Bash(cat Cargo.toml)
-  - Bash(cat go.mod)
 maxTurns: 12
 ---
 
@@ -62,15 +55,13 @@ Follow these steps for every validation run:
 1. **Detect project tools** — Read config files to determine what's available:
    - `package.json` → npm/pnpm/bun/yarn scripts, test framework, linter
    - `pyproject.toml` → pytest, mypy, ruff, pyright config
-   - `Cargo.toml` → cargo test/check/clippy
-   - `go.mod` → go test/vet
    - `CLAUDE.md` → Dev Commands section for project-specific commands
 2. **Run checks in order** — Execute available checks in this sequence:
-   1. **Lint** — eslint, biome, ruff, clippy, go vet
+   1. **Lint** — eslint, biome, ruff
    2. **Format check** — prettier --check, biome check, ruff format --check
-   3. **Typecheck** — tsc --noEmit, mypy, pyright, cargo check
-   4. **Tests** — vitest, jest, pytest, cargo test, go test
-   5. **Build** — npm run build, cargo build, go build (only if requested or part of standard validation)
+   3. **Typecheck** — tsc --noEmit, mypy, pyright
+   4. **Tests** — vitest, jest, pytest
+   5. **Build** — npm run build, pnpm build, python -m build (only if requested or part of standard validation)
 3. **Parse output** — Extract pass/fail status and failure details from each command
 4. **Group related failures** — Cluster errors that share a root cause (e.g., a missing type causes 5 type errors)
 5. **Compile report** — Structured summary with overall verdict

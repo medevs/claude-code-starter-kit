@@ -38,10 +38,8 @@
 **Symptom**: `/setup` asks for your tech stack even though config files exist.
 
 **Fix**:
-1. Ensure config files are in the project root: `package.json`, `pyproject.toml`, `Cargo.toml`, or `go.mod`
-2. For Hono projects, verify `"hono"` appears in `package.json` dependencies
-3. For Cloudflare Workers, verify `wrangler.toml` exists
-4. If auto-detection fails, manually select your framework — `/setup` will still configure everything correctly
+1. Ensure config files are in the project root: `package.json`, `pyproject.toml`, or `tsconfig.json`
+2. If auto-detection fails, manually select your framework — `/setup` will still configure everything correctly
 
 ### Subagent Timing Out
 

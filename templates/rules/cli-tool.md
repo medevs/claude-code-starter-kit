@@ -4,7 +4,6 @@
 
 - **Node.js**: `commander` (mature, large ecosystem) or `citty` (modern, lightweight, unjs ecosystem)
 - **Python**: `typer` (type-hint-driven, auto-generates help) over `click` (more manual but flexible)
-- **Go**: `cobra` (standard for Go CLIs)
 - **Colors/formatting**: `chalk` (Node.js), `rich` (Python) — never use manual ANSI codes
 
 ## Architecture

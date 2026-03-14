@@ -14,9 +14,9 @@ Any developer using Claude Code who wants:
 - Framework-specific guidance (rules and skills for your stack)
 - Faster development through subagent delegation
 
-### Is it language/framework-agnostic?
+### What languages does it support?
 
-Yes. The core rules, commands, and skills work with any language or framework. Framework-specific behavior is injected through templates during `/setup` — choose Next.js, FastAPI, Hono, React Native, CLI tools, or AI agents, or use the "Custom" option for anything else.
+The kit is focused on **JavaScript/TypeScript and Python** projects. Framework-specific behavior is injected through templates during `/setup` — choose Next.js, FastAPI, CLI tools, or AI agents, or use the "Custom" option for any JS/TS or Python project.
 
 ### Do I need to use all of it?
 
@@ -178,8 +178,6 @@ Or run `/setup` and select the servers you want — it handles the configuration
 |----------|-----------|
 | `nextjs.md` | Next.js 15+, React 19+, App Router, Tailwind v4 |
 | `fastapi.md` | FastAPI 0.115+, Pydantic 2.x, Python 3.12+ |
-| `hono.md` | Hono, edge runtimes, Cloudflare Workers |
-| `react-native.md` | React Native, Expo |
 | `cli-tool.md` | CLI applications |
 | `ai-agents.md` | LLM-powered applications |
 
@@ -189,7 +187,6 @@ Or run `/setup` and select the servers you want — it handles the configuration
 | `react-patterns/` | React 19, hooks, composition, Server Components |
 | `api-design/` | REST conventions, validation, pagination |
 | `database/` | Schema design, migrations, query optimization |
-| `edge-api/` | Edge runtimes, Cloudflare Workers, KV/D1/R2 |
 | `agent-development/` | Tool design, prompt engineering, MCP |
 
 ### How do I request a new template?

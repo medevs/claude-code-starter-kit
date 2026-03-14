@@ -39,6 +39,9 @@ So that <benefit/value>
 3. **Dependency Analysis** — Catalog relevant libraries, check versions, find internal documentation
 4. **Testing Patterns** — Identify test framework, find similar test examples, note coverage requirements
 5. **Integration Points** — Map files needing updates, new files to create, registration patterns
+6. **Stack-Specific Intelligence**:
+   - **JS/TS projects**: Check `tsconfig.json` for path aliases (affects import patterns), `package.json` scripts for available dev/test/build commands, monorepo indicators (`workspaces`, `turbo.json`, `nx.json`)
+   - **Python projects**: Check `pyproject.toml` for tool configs (ruff, mypy, pytest), `uv.lock` vs `requirements.txt` (determines install/run commands), `alembic/` directory (database migrations)
 
 **If requirements are unclear, ASK the user before continuing.**
 

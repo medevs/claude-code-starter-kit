@@ -231,59 +231,6 @@ paths:
                   pagination: { $ref: "#/components/schemas/PaginationCursor" }
 ```
 
-## Hono API Example
-
-Complete Hono endpoint with Zod validation and typed responses:
-
-```ts
-import { Hono } from "hono";
-import { zValidator } from "@hono/zod-validator";
-import { z } from "zod";
-import { HTTPException } from "hono/http-exception";
-
-const createProductSchema = z.object({
-  name: z.string().min(1).max(255),
-  price: z.number().positive(),
-  categoryId: z.string(),
-});
-
-const querySchema = z.object({
-  cursor: z.string().optional(),
-  limit: z.coerce.number().min(1).max(100).default(20),
-  category: z.string().optional(),
-});
-
-const app = new Hono();
-
-// GET /products — list with cursor pagination
-app.get("/products", zValidator("query", querySchema), async (c) => {
-  const { cursor, limit, category } = c.req.valid("query");
-  const products = await productService.list({ cursor, limit: limit + 1, category });
-  const hasMore = products.length > limit;
-  const data = hasMore ? products.slice(0, limit) : products;
-  return c.json({
-    data,
-    pagination: { next_cursor: hasMore ? data.at(-1)!.id : null, has_more: hasMore },
-  });
-});
-
-// POST /products — create with validation
-app.post("/products", zValidator("json", createProductSchema), async (c) => {
-  const body = c.req.valid("json");
-  const product = await productService.create(body);
-  return c.json(product, 201);
-});
-
-// GET /products/:id — single resource
-app.get("/products/:id", async (c) => {
-  const product = await productService.findById(c.req.param("id"));
-  if (!product) throw new HTTPException(404, { message: "Product not found" });
-  return c.json({ data: product });
-});
-
-export default app;
-```
-
 ## GraphQL Schema Examples
 
 ### Type Definitions with Relay Connections

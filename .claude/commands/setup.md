@@ -14,12 +14,8 @@ Configure this starter kit for your specific project. This wizard will populate 
 ### Step 1: Detect or Ask Tech Stack
 
 **Auto-detect first** by checking for existing config files:
-- `package.json` → Node.js project (check for Next.js, React, Vue, etc.)
-- `package.json` with `"hono"` dependency → Hono API project
-- `wrangler.toml` → Cloudflare Workers (likely Hono)
-- `pyproject.toml` / `requirements.txt` → Python project (check for FastAPI, Django, Flask)
-- `Cargo.toml` → Rust project
-- `go.mod` → Go project
+- `package.json` → Node.js project (check for Next.js, React, etc.)
+- `pyproject.toml` / `requirements.txt` → Python project (check for FastAPI, Flask)
 - `tsconfig.json` → TypeScript enabled
 
 **If no config files found or ambiguous, ask the user:**
@@ -28,18 +24,15 @@ Configure this starter kit for your specific project. This wizard will populate 
 > What are you building?
 > 1. **Next.js web app** (React, App Router, Tailwind)
 > 2. **FastAPI backend** (Python, async, SQLAlchemy)
-> 3. **Hono API** (edge/serverless, Cloudflare Workers, Bun, Node.js)
-> 4. **React Native mobile** (Expo, cross-platform)
-> 5. **CLI tool** (Node.js or Python command-line application)
-> 6. **AI Agent** (LLM-powered application)
-> 7. **Custom** (I'll specify)
+> 3. **CLI tool** (Node.js or Python command-line application)
+> 4. **AI Agent** (LLM-powered, JS/TS or Python)
+> 5. **Custom** (JS/TS or Python — I'll specify)
 
 **Phase B: Additional capabilities (zero or more)**
 > Would you like to add any additional skill sets?
 > - [ ] **Database patterns** (schema design, migrations, query optimization)
 > - [ ] **API design patterns** (REST conventions, pagination, error handling)
 > - [ ] **AI agent patterns** (tool design, prompt engineering, MCP)
-> - [ ] **Edge runtime patterns** (Cloudflare Workers, Vercel Edge, KV/D1/R2)
 
 ### Step 2: Identify Architecture
 
@@ -84,8 +77,6 @@ Edit the template sections in CLAUDE.md:
 Based on the detected/chosen stack, copy relevant templates from `templates/rules/` to `.claude/rules/`:
 - Next.js project → copy `templates/rules/nextjs.md` → `.claude/rules/nextjs.md`
 - FastAPI project → copy `templates/rules/fastapi.md` → `.claude/rules/fastapi.md`
-- Hono project → copy `templates/rules/hono.md` → `.claude/rules/hono.md`
-- React Native → copy `templates/rules/react-native.md` → `.claude/rules/react-native.md`
 - CLI tool → copy `templates/rules/cli-tool.md` → `.claude/rules/cli-tool.md`
 - AI Agent → copy `templates/rules/ai-agents.md` → `.claude/rules/ai-agents.md`
 
@@ -97,8 +88,6 @@ Based on the stack and Phase B selections, copy skill templates to `.claude/skil
 **Default combinations (auto-included with primary framework):**
 - Next.js → `react-patterns/`
 - FastAPI → `api-design/` + `database/`
-- Hono → `api-design/` + `edge-api/`
-- React Native → `react-patterns/`
 - CLI tool → (no default skills)
 - AI Agent → `agent-development/`
 
@@ -106,7 +95,6 @@ Based on the stack and Phase B selections, copy skill templates to `.claude/skil
 - Database patterns → `database/`
 - API design patterns → `api-design/`
 - AI agent patterns → `agent-development/`
-- Edge runtime patterns → `edge-api/`
 
 Deduplicate: if a skill is already included by the primary framework default, don't copy it twice.
 

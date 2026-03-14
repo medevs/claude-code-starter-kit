@@ -32,12 +32,6 @@ case "$ext" in
       uv run ruff format "$file_path" 2>/dev/null
     fi
     ;;
-  rs)
-    command -v rustfmt &>/dev/null && rustfmt "$file_path" 2>/dev/null
-    ;;
-  go)
-    command -v gofmt &>/dev/null && gofmt -w "$file_path" 2>/dev/null
-    ;;
 esac
 
 exit 0

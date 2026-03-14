@@ -30,7 +30,7 @@ The five core commands that form the Plan-Implement-Validate workflow.
 
 **PROCESS**:
 1. Analyze project structure via `git ls-files`
-2. Detect tech stack from config files (package.json, pyproject.toml, Cargo.toml, go.mod)
+2. Detect tech stack from config files (package.json, pyproject.toml, tsconfig.json)
 3. Read core documentation (CLAUDE.md, README.md)
 4. Identify key files (entry points, schemas, routers)
 5. Check git state (`git log -10`, `git status`, `git branch -a`)
@@ -123,8 +123,8 @@ The five core commands that form the Plan-Implement-Validate workflow.
 1. Detect project tools from CLAUDE.md or config files
 2. Run lint & format check (eslint, biome, ruff, prettier)
 3. Run type checking (tsc, mypy, pyright)
-4. Run test suite (vitest, jest, pytest, cargo test, go test)
-5. Run build (npm run build, cargo build, go build)
+4. Run test suite (vitest, jest, pytest)
+5. Run build (npm run build, pnpm build, python -m build)
 
 **OUTPUT**: Pass/fail table for each check with failure details. Does NOT auto-fix — suggests running `/code-review-fix` or manual fixes.
 
@@ -218,7 +218,7 @@ Each step must pass its gate before the next begins:
 **INPUT**: Existing config files (auto-detected) or user responses to prompts.
 
 **PROCESS**:
-1. Detect or ask tech stack (Next.js, FastAPI, Hono, React Native, CLI, AI Agent, Custom)
+1. Detect or ask tech stack (Next.js, FastAPI, CLI, AI Agent, Custom)
 2. Ask architecture preference (VSA, Clean, Simple)
 3. Detect package manager and tools from lock files and configs
 4. Offer MCP server integrations (Playwright, Supabase, GitHub, PostgreSQL, Memory, Fetch, Filesystem)

@@ -66,14 +66,13 @@ GET    /api/v1/users/:id/orders   # Nested resource (max 2 levels)
 
 Modern TypeScript API frameworks provide end-to-end type safety and better DX:
 
-- **Hono**: Lightweight, runs on all edge runtimes (Cloudflare Workers, Bun, Node.js). Best for edge/serverless APIs. Uses `@hono/zod-openapi` for typed routes with auto-generated docs.
 - **tRPC**: End-to-end type safety between client and server without code generation. Best for full-stack TypeScript apps where you control both client and server.
-- **Elysia**: Bun-native framework with compile-time type inference. Best for Bun-first projects needing maximum performance.
+- **Express/Fastify**: Mature Node.js frameworks with large ecosystem and middleware support.
 
 ### When to Choose
-- **Hono** → Multi-runtime, edge deployment, OpenAPI docs needed
+- **Next.js API Routes** → Full-stack Next.js app, co-located frontend and backend
+- **FastAPI** → Python backend, async, auto-generated OpenAPI docs
 - **tRPC** → Full-stack TS monorepo, no REST needed, maximum type safety
-- **Elysia** → Bun-only deployment, performance critical
 - **Express/Fastify** → Large existing ecosystem, many middleware dependencies
 
 ## Error Response Format

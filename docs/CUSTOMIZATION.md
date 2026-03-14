@@ -333,7 +333,7 @@ Templates in `templates/` are framework-specific rules and skills that get copie
 2. Follow the same format as existing templates — framework-specific conventions, patterns, and anti-patterns
 3. Update `/setup` command to detect your framework and offer the template
 
-**Naming convention**: Use the framework name in lowercase: `nextjs.md`, `fastapi.md`, `hono.md`
+**Naming convention**: Use the framework name in lowercase: `nextjs.md`, `fastapi.md`, `cli-tool.md`
 
 ### Adding a Skill Template
 
@@ -355,12 +355,10 @@ Templates in `templates/` are framework-specific rules and skills that get copie
 |--------------------|---------------|-----------------|
 | Next.js | `nextjs.md` | `react-patterns/` |
 | FastAPI | `fastapi.md` | `api-design/`, `database/` |
-| Hono | `hono.md` | `api-design/`, `edge-api/` |
-| React Native | `react-native.md` | `react-patterns/` |
 | CLI tool | `cli-tool.md` | — |
 | AI Agent | `ai-agents.md` | `agent-development/` |
 
-Users can also select additional skill templates (database, API design, edge runtime, agent development) regardless of framework.
+Users can also select additional skill templates (database, API design, agent development) regardless of framework.
 
 ---
 
@@ -419,7 +417,7 @@ Or use `/setup` to configure them interactively.
 
 **PostToolUse — Auto-Format** (`.claude/hooks/auto-format.sh`)
 - Auto-formats files after Write/Edit operations
-- Detects project formatter from config files (Biome, Prettier, Ruff, rustfmt, gofmt)
+- Detects project formatter from config files (Biome, Prettier, Ruff)
 - Non-blocking — runs after the tool completes
 
 ### Hook Configuration in settings.json

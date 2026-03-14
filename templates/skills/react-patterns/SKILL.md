@@ -5,7 +5,7 @@ description: >
   best practices. Use when building or modifying React components, designing
   component APIs, choosing between state management approaches, implementing
   accessible UI patterns, optimizing React rendering performance, or working
-  with forms and error boundaries in React/Next.js/React Native projects.
+  with forms and error boundaries in React/Next.js projects.
 ---
 
 # React Component Patterns

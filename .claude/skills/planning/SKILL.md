@@ -135,6 +135,22 @@ If any item is unchecked, address it before starting implementation.
 | Starting at confidence 4 | "I'll figure it out as I go" | Research until confidence reaches 7+, then implement |
 | No validation strategy | "I think it works" | Define concrete pass/fail criteria for every unit |
 
+## Validation Commands by Stack
+
+When designing validation strategy, use the appropriate commands for the project's stack:
+
+**JS/TS:**
+- Level 1 (Lint & Format): `npx biome check .` / `npx eslint .`
+- Level 2 (Type Check): `npx tsc --noEmit`
+- Level 3 (Tests): `npx vitest run` / `npx jest`
+- Level 4 (Build): `npm run build` / `pnpm build`
+
+**Python:**
+- Level 1 (Lint & Format): `ruff check . && ruff format --check .`
+- Level 2 (Type Check): `mypy .` / `pyright`
+- Level 3 (Tests): `pytest`
+- Level 4 (Build): `python -m build` (if applicable)
+
 ## Reference
 
 See `references/plan-templates.md` for full and lightweight plan templates, risk matrices, and pre-implementation checklists.

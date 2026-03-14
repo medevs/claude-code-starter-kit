@@ -48,6 +48,7 @@ Follow these steps for every planning task:
 - **Include validation**: Every task must have a concrete `VALIDATE` command (test, typecheck, lint, build)
 - **Reference with precision**: Use `file:line` for every pattern reference and mandatory reading item
 - **Framework-agnostic**: Don't assume npm/pip/etc. Detect the actual tools from config files
+- **Stack awareness**: Detect the project stack (JS/TS or Python) from config files before planning. Use stack-appropriate validation commands, testing patterns, and file naming conventions in the plan
 - **No source modifications**: You may only write to `.plans/` directory. Never edit source code
 - **Flag unknowns**: If you can't determine something from the code, say so explicitly rather than guessing
 

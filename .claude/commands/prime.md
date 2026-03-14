@@ -23,8 +23,6 @@ Read configuration files to identify the stack:
 **Check for (read whichever exist):**
 - `package.json` — Node.js/JavaScript/TypeScript project
 - `pyproject.toml` or `requirements.txt` — Python project
-- `Cargo.toml` — Rust project
-- `go.mod` — Go project
 - `tsconfig.json` — TypeScript configuration
 - `biome.json` or `.eslintrc*` — Linting setup
 - `vitest.config.*` or `jest.config.*` or `pytest.ini` — Test framework
@@ -40,7 +38,7 @@ Read configuration files to identify the stack:
 ### 4. Identify Key Files
 
 Based on detected stack, read:
-- Main entry points (`src/index.ts`, `app/main.py`, `main.go`, etc.)
+- Main entry points (`src/index.ts`, `app/main.py`, etc.)
 - Core configuration files
 - Key model/schema definitions
 - Router or API definitions

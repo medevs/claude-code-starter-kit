@@ -22,8 +22,8 @@ Follow the testing standards defined in `.claude/rules/testing.md` (AAA pattern,
 ### 2. Discover Patterns
 
 Delegate to the `researcher` agent to discover in parallel:
-- What test framework is configured (vitest, jest, pytest, go test, cargo test, etc.)
-- Existing test file naming conventions (`.test.ts`, `.spec.ts`, `test_*.py`, `*_test.go`)
+- What test framework is configured (vitest, jest, pytest, etc.)
+- Existing test file naming conventions (`.test.ts`, `.spec.ts`, `test_*.py`)
 - Test directory structure (colocated vs separate `tests/` directory)
 - Shared test utilities, fixtures, factories, and helpers
 - How similar code in the project is already tested (find 2-3 example test files)
