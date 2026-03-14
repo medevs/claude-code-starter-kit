@@ -31,7 +31,10 @@ git clone https://github.com/medevs/claude-code-starter-kit.git /tmp/claude-star
 ```bash
 # From your project root
 cp -r /tmp/claude-starter-kit/.claude/ .claude/
+cp /tmp/claude-starter-kit/.claudeignore .claudeignore
 ```
+
+The `.claudeignore` file excludes dependencies, build artifacts, and binaries from Claude's context window — saving 30-100K tokens for typical projects.
 
 If you already have a `.claude/` directory, copy subdirectories individually to avoid overwriting your `settings.json`:
 
@@ -131,7 +134,7 @@ claude
 
 Verify that `/prime` shows:
 - ✅ All rules loaded
-- ✅ All 15 commands available
+- ✅ All 16 commands available
 - ✅ Skills detected
 - ✅ Subagents listed
 - ✅ Your project's tech stack and conventions recognized
@@ -146,7 +149,7 @@ rm -rf /tmp/claude-starter-kit
 
 Commit the integration:
 ```bash
-git add .claude/ CLAUDE.md templates/ docs/
+git add .claude/ .claudeignore CLAUDE.md templates/ docs/
 git commit -m "chore: integrate claude-code-starter-kit"
 ```
 
@@ -162,7 +165,7 @@ Take only what you need. Each component is independent.
 cp -r /tmp/claude-starter-kit/.claude/commands/ .claude/commands/
 ```
 
-You get all 15 slash commands. Commands reference rules and agents, so you may want those too.
+You get all 16 slash commands. Commands reference rules and agents, so you may want those too.
 
 ### Just Hooks
 
@@ -170,7 +173,7 @@ You get all 15 slash commands. Commands reference rules and agents, so you may w
 cp -r /tmp/claude-starter-kit/.claude/hooks/ .claude/hooks/
 ```
 
-You get the dangerous command blocker and auto-formatter. Update `.claude/settings.json` to register the hooks.
+You get all 5 hooks: dangerous command blocker, branch protection, auto-formatter, auto-linter, and completion notifier. Update `.claude/settings.json` to register the hooks.
 
 ### Just Rules
 

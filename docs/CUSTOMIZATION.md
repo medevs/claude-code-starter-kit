@@ -287,6 +287,7 @@ description: >
   Detailed description of when and how to use this agent. Claude uses this
   to decide when to delegate to the agent. Include example scenarios.
 model: sonnet
+memory: project
 tools:
   - Read
   - Glob
@@ -325,6 +326,14 @@ You are a **[role name]** — [one-line description of what this agent does].
 |-------|----------|------------|
 | `haiku` | Read-only exploration, pattern discovery, simple questions | Fast, cheap. Lower reasoning capability. |
 | `sonnet` | Complex analysis, planning, code review, debugging | Better reasoning. Slower, more expensive. |
+
+### Optional Frontmatter Fields
+
+| Field | Type | Effect |
+|-------|------|--------|
+| `memory` | `string` | Enables cross-session persistence. Set to `project` for agents that benefit from accumulated knowledge (planner, code-reviewer, investigator). Omit for ephemeral agents (researcher, validator). |
+| `color` | `string` | Terminal color for the agent's output (e.g., `red`, `orange`, `blue`). Helps distinguish agents visually. |
+| `skills` | `string[]` | Skills available to this agent (e.g., `planning`, `debugging`). |
 
 ### Tool Restrictions
 
@@ -472,10 +481,25 @@ Or use `/setup` to configure them interactively.
 - Prompts for confirmation on sensitive file access (.env, .pem, credentials)
 - Receives JSON on stdin with `tool_name` and `tool_input`
 
+**PreToolUse — Branch Protection** (`.claude/hooks/branch-protection.sh`)
+- Warns when Write/Edit operations are attempted on `main` or `master` branch
+- Prompts user to create a feature branch first
+- Uses `permissionDecision: "ask"` — the user can override if needed
+
 **PostToolUse — Auto-Format** (`.claude/hooks/auto-format.sh`)
 - Auto-formats files after Write/Edit operations
 - Detects project formatter from config files (Biome, Prettier, Ruff)
 - Non-blocking — runs after the tool completes
+
+**PostToolUse — Auto-Lint** (`.claude/hooks/auto-lint.sh`)
+- Runs linter on files after Write/Edit operations (separate from formatting)
+- Detects project linter: Biome, ESLint (JS/TS) or Ruff (Python)
+- Provides immediate lint feedback so Claude can fix issues in the same session
+
+**Stop — Completion Notification** (`.claude/hooks/notify-completion.sh`)
+- Sends a desktop notification when Claude finishes a task
+- Cross-platform: macOS (osascript), Linux (notify-send), Windows (PowerShell)
+- Prevents wasted idle time when Claude is running long tasks
 
 ### Hook Configuration in settings.json
 
@@ -485,6 +509,16 @@ Hooks are configured in `.claude/settings.json` using this format:
 {
   "hooks": {
     "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/branch-protection.sh",
+            "timeout": 5000
+          }
+        ]
+      },
       {
         "matcher": "Bash",
         "hooks": [
@@ -502,8 +536,25 @@ Hooks are configured in `.claude/settings.json` using this format:
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/after-write.sh",
+            "command": ".claude/hooks/auto-format.sh",
             "timeout": 30000
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/auto-lint.sh",
+            "timeout": 30000
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/notify-completion.sh",
+            "timeout": 5000
           }
         ]
       }
@@ -555,6 +606,38 @@ PostToolUse hooks don't need to return a permission decision — they run after 
    ```
 2. Make it executable: `chmod +x .claude/hooks/my-hook.sh`
 3. Register it in `.claude/settings.json` under the appropriate event
+
+---
+
+## Configuring .claudeignore
+
+### What Is .claudeignore?
+
+`.claudeignore` works like `.gitignore` but for Claude Code's context window. Files matching patterns in `.claudeignore` are excluded when Claude scans your project, saving significant context budget.
+
+### Default Exclusions
+
+The starter kit's `.claudeignore` excludes:
+- **Dependencies**: `node_modules/`, `.venv/`, `__pycache__/`
+- **Build artifacts**: `dist/`, `build/`, `.next/`, `coverage/`
+- **Generated files**: `*.min.js`, `*.map`, lock files (`pnpm-lock.yaml`, `package-lock.json`, `yarn.lock`)
+- **IDE/Editor files**: `.idea/`, `.vscode/`, swap files
+- **Large binaries**: images, fonts, media, PDFs
+
+### Customizing
+
+Add project-specific patterns to `.claudeignore` at the project root:
+
+```gitignore
+# Project-specific exclusions
+data/fixtures/large-dataset.json
+generated/
+*.sqlite
+```
+
+### Impact
+
+For a typical Node.js project, `.claudeignore` saves 30-100K tokens by excluding `node_modules/`, lock files, and build output from context.
 
 ---
 

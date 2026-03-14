@@ -55,7 +55,7 @@ This is the most important step. `/setup` will:
 7. **Configure MCP servers** if you selected any
 8. **Verify** by running `/prime` to confirm everything loaded
 
-**Expected**: A summary showing your configuration, active rules, available skills, and all 15 commands.
+**Expected**: A summary showing your configuration, active rules, available skills, and all 16 commands.
 
 **If this fails**: See [Troubleshooting — /setup not detecting framework](./TROUBLESHOOTING.md#setup-not-detecting-framework).
 
@@ -134,7 +134,7 @@ The starter kit has five layers that work together:
 | **Commands** | `.claude/commands/` | User-invoked (`/command`) | Workflows: plan, build, validate, commit |
 | **Skills** | `.claude/skills/` | Auto-detected | Expertise: context management, debugging, planning |
 | **Subagents** | `.claude/agents/` | Delegated by commands | Workers: researcher, planner, reviewer, validator, investigator |
-| **Hooks** | `.claude/hooks/` | Pre/post tool use | Safety: block dangerous commands, auto-format files |
+| **Hooks** | `.claude/hooks/` | Pre/post tool use + stop | Safety: block dangerous commands, branch protection, auto-format, auto-lint, completion notifications |
 
 For the full architecture explanation, see [Architecture Guide](./ARCHITECTURE-GUIDE.md).
 
@@ -142,7 +142,7 @@ For the full architecture explanation, see [Architecture Guide](./ARCHITECTURE-G
 
 ## What Next?
 
-- **[Commands Reference](./COMMANDS-REFERENCE.md)** — All 15 commands with INPUT/PROCESS/OUTPUT, allowed tools, and examples
+- **[Commands Reference](./COMMANDS-REFERENCE.md)** — All 16 commands with INPUT/PROCESS/OUTPUT, allowed tools, and examples
 - **[Architecture Guide](./ARCHITECTURE-GUIDE.md)** — The 5-layer stack, subagents, VSA, context engineering, migration guide
 - **[Customization](./CUSTOMIZATION.md)** — Add your own rules, commands, skills, subagents, hooks, and MCP servers
 - **[Troubleshooting](./TROUBLESHOOTING.md)** — Common issues, permissions, platform-specific fixes

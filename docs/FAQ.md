@@ -125,16 +125,30 @@ The `block-dangerous-commands.sh` hook blocks:
 
 Sensitive file access (`.env`, `.pem`, credentials) triggers a confirmation prompt.
 
+### What hooks are included?
+
+The starter kit includes 5 hooks across 3 event types:
+
+| Hook | Event | Purpose |
+|------|-------|---------|
+| `block-dangerous-commands.sh` | PreToolUse | Blocks destructive shell commands |
+| `branch-protection.sh` | PreToolUse | Warns when editing on main/master |
+| `auto-format.sh` | PostToolUse | Auto-formats files after edits |
+| `auto-lint.sh` | PostToolUse | Runs linter after edits for immediate feedback |
+| `notify-completion.sh` | Stop | Desktop notification when Claude finishes |
+
 ### Can I disable hooks?
 
-Yes. Remove the hook entry from `.claude/settings.json` under the `hooks` section. To disable the dangerous command blocker, remove the `PreToolUse` entry. To disable auto-formatting, remove the `PostToolUse` entry. **Not recommended** — hooks are your safety net.
+Yes. Remove the hook entry from `.claude/settings.json` under the `hooks` section. Remove individual hooks from the `PreToolUse`, `PostToolUse`, or `Stop` arrays. **Not recommended** — hooks are your safety net.
 
 ### How does the 3-tier permission system work?
 
 Configured in `.claude/settings.json` under `permissions`:
 - **allow**: Commands execute without prompting (git status, npm test, file reads)
-- **ask**: Commands prompt for user confirmation (git push, rm, docker)
-- **deny**: Commands are always blocked (rm -rf /, force push, chmod 777)
+- **ask**: Commands prompt for user confirmation (git push, rm, docker, package installs)
+- **deny**: Commands are always blocked (rm -rf /, force push, chmod 777, credential file reads)
+
+The `deny` list also blocks reading credential directories (`~/.ssh`, `~/.aws`, `~/.gnupg`, `~/.kube`) and editing shell configs (`~/.bashrc`, `~/.zshrc`). The `ask` list requires confirmation for package installs (`npm install`, `pip install`, etc.) to mitigate supply chain risk.
 
 See [Troubleshooting](./TROUBLESHOOTING.md#understanding-the-3-tier-model) for details.
 

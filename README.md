@@ -17,7 +17,7 @@ Turn Claude Code from a blank canvas into a structured development engine. Go fr
 | Rules | 8 | 6 universal + 2 path-targeted (api/, frontend/) |
 | Skills | 12 | 1 custom + 11 from ecosystem (anthropics, vercel, obra, supercent, mattpocock) |
 | Subagents | 5 | 1 haiku (fast research) + 4 sonnet (reasoning) |
-| Safety hooks | 2 | Dangerous command blocker + auto-formatter |
+| Safety hooks | 5 | Command blocker, auto-formatter, auto-linter, branch protection, completion notifier |
 | Permission tiers | 3 | allow / ask / deny in settings.json |
 | MCP templates | 7 | Playwright, Supabase, GitHub, PostgreSQL, Memory, Fetch, Filesystem |
 | Rule templates | 4 | Next.js, FastAPI, CLI, AI Agents |
@@ -122,14 +122,15 @@ See [Commands Reference](docs/COMMANDS-REFERENCE.md) for INPUT/PROCESS/OUTPUT do
 │  Rules          (always loaded)             │  8 rules: code quality, testing, security,
 │                                             │  architecture, git, AI workflow, api, frontend
 ├─────────────────────────────────────────────┤
-│  Commands       (user-invoked)              │  15 commands with tool restrictions
+│  Commands       (user-invoked)              │  16 commands with tool restrictions
 ├─────────────────────────────────────────────┤
 │  Skills         (auto-detected)             │  12 skills (1 custom + 11 ecosystem)
 ├─────────────────────────────────────────────┤
 │  Subagents      (delegated)                 │  5 agents: researcher, planner, reviewer,
 │                                             │  validator, investigator
 ├─────────────────────────────────────────────┤
-│  Hooks          (safety net)                │  Block dangerous commands, auto-format
+│  Hooks          (safety net)                │  5 hooks: safety, formatting, linting,
+│                                             │  branch protection, notifications
 └─────────────────────────────────────────────┘
 ```
 
@@ -152,6 +153,7 @@ See [Architecture Guide](docs/ARCHITECTURE-GUIDE.md) for the full stack explanat
 ```
 claude-code-starter-kit/
 ├── CLAUDE.md                          # Root rules (<200 lines, @imports)
+├── .claudeignore                      # Excludes deps, builds, binaries from context
 ├── README.md                          # This file
 ├── .claude/
 │   ├── settings.json                  # Permissions (allow/ask/deny), hooks, MCP
@@ -179,9 +181,12 @@ claude-code-starter-kit/
 │   │   └── bugfix/                    #   Namespaced bugfix commands
 │   │       ├── rca.md                 #     /rca — root cause analysis
 │   │       └── fix.md                 #     /fix — implement fix from RCA
-│   ├── hooks/                         # 2 safety hooks
+│   ├── hooks/                         # 5 hooks (safety + automation)
 │   │   ├── block-dangerous-commands.sh#   PreToolUse — blocks destructive commands
-│   │   └── auto-format.sh            #   PostToolUse — auto-formats after edits
+│   │   ├── branch-protection.sh       #   PreToolUse — warns on main/master edits
+│   │   ├── auto-format.sh            #   PostToolUse — auto-formats after edits
+│   │   ├── auto-lint.sh              #   PostToolUse — runs linter after edits
+│   │   └── notify-completion.sh      #   Stop — desktop notification on task completion
 │   ├── rules/                         # 8 auto-loaded rules
 │   │   ├── code-quality.md            #   Naming, structure, error handling
 │   │   ├── testing.md                 #   Test standards, AAA, coverage
@@ -216,7 +221,8 @@ claude-code-starter-kit/
 │       └── supabase.json              #   Supabase management
 ├── docs/                              # Documentation
 │   ├── GETTING-STARTED.md             #   Installation and first feature
-│   ├── COMMANDS-REFERENCE.md          #   All 15 commands detailed
+│   ├── COMMANDS-REFERENCE.md          #   All 16 commands detailed
+│   ├── ANTI-PATTERNS.md              #   Common mistakes and how to avoid them
 │   ├── ARCHITECTURE-GUIDE.md          #   5-layer stack, subagents, VSA
 │   ├── CUSTOMIZATION.md              #   Add rules, commands, skills, agents, hooks
 │   ├── TROUBLESHOOTING.md            #   Common issues and platform fixes
@@ -317,6 +323,7 @@ claude-code-starter-kit/
 | [Customization](docs/CUSTOMIZATION.md) | Add rules, commands, skills, subagents, hooks, MCP servers |
 | [Troubleshooting](docs/TROUBLESHOOTING.md) | Common issues, permissions, platform-specific fixes |
 | [FAQ](docs/FAQ.md) | Answers to frequently asked questions |
+| [Anti-Patterns](docs/ANTI-PATTERNS.md) | Common mistakes when working with Claude Code |
 | [Migration Guide](docs/MIGRATION.md) | Integrate the starter kit into an existing project |
 
 ## License

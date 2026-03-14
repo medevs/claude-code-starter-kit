@@ -26,7 +26,7 @@ The starter kit is built on five layers, each with a distinct role. They activat
 
 **Subagents** are specialized workers that Claude delegates to for parallel or focused tasks. Each agent has a specific model, tool restrictions, and turn limit. Agents handle research, planning, code review, validation, and investigation without polluting the main conversation context.
 
-**Hooks** are shell scripts that run automatically before or after tool use. They provide safety (blocking dangerous commands) and automation (auto-formatting files after edits). Hooks are configured in `.claude/settings.json`.
+**Hooks** are shell scripts that run automatically before tool use, after tool use, or when Claude stops. They provide safety (blocking dangerous commands, branch protection), automation (auto-formatting, auto-linting), and quality-of-life features (desktop notifications on completion). Hooks are configured in `.claude/settings.json`.
 
 ### Data Flow Between Layers
 
@@ -34,8 +34,9 @@ The starter kit is built on five layers, each with a distinct role. They activat
 User → Command → (reads Rules) → delegates to Subagents → (Skills activate on-demand)
                                                         ↓
                                             Hooks intercept tool calls
-                                            (PreToolUse: block/allow)
-                                            (PostToolUse: auto-format)
+                                            (PreToolUse: block/allow, branch protection)
+                                            (PostToolUse: auto-format, auto-lint)
+                                            (Stop: completion notification)
 ```
 
 ---
