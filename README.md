@@ -13,7 +13,7 @@ Turn Claude Code from a blank canvas into a structured development engine. Go fr
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Slash commands | 15 | 5 PIV loop + 1 pipeline + 7 extended + 2 bugfix |
+| Slash commands | 16 | 5 PIV loop + 1 pipeline + 8 extended + 2 bugfix |
 | Rules | 8 | 6 universal + 2 path-targeted (api/, frontend/) |
 | Skills | 5 | Progressive depth with references/ |
 | Subagents | 5 | 1 haiku (fast research) + 4 sonnet (reasoning) |
@@ -61,7 +61,9 @@ Five core commands form the Plan-Implement-Validate workflow:
   context    plan       from plan    checks        commit
 ```
 
-**`/build <feature>`** chains all five with gates between each step. One command, full feature.
+**`/build <feature>`** chains all five (plus optional report) with gates between each step. One command, full feature.
+
+**Feedback loop**: After implementation, `/execution-report` captures divergences, then `/system-review` analyzes the process and suggests improvements to CLAUDE.md, commands, and workflows.
 
 ---
 
@@ -91,6 +93,7 @@ Five core commands form the Plan-Implement-Validate workflow:
 | `/create-prd` | `<name>` | Read, Write, Glob, Grep | `.plans/prd-{name}.md` |
 | `/review` | `[files]` | Read, Write, Glob, Grep, Bash(git), Agent | `.plans/reviews/` |
 | `/execution-report` | — | Read, Write, Glob, Grep, Bash(git) | `.plans/reports/` |
+| `/system-review` | `<plan> <report>` | Read, Write, Glob, Grep, Bash(git) | `.plans/system-reviews/` |
 | `/code-review-fix` | `<review-file>` | Read, Write, Edit, Bash, Glob, Grep | Console report |
 | `/refactor` | `<scope>` | Read, Write, Edit, Bash, Glob, Grep, Agent | `.plans/refactors/` + commits |
 | `/test` | `<file-or-module>` | Read, Write, Edit, Bash, Glob, Grep, Agent | Test files + console |
@@ -101,6 +104,12 @@ Five core commands form the Plan-Implement-Validate workflow:
 |---------|------|---------------|--------|
 | `/rca` | `<issue-or-desc>` | Read, Write, Glob, Grep, Bash(git, gh), Agent | `.plans/rca-{id}.md` |
 | `/fix` | `<issue-id>` | Read, Write, Edit, Bash, Glob, Grep, Agent | Console + suggested commit |
+
+### Feedback Loop
+
+| Command | Args | Allowed Tools | Output |
+|---------|------|---------------|--------|
+| `/system-review` | `<plan> <report>` | Read, Write, Glob, Grep, Bash(git) | `.plans/system-reviews/` |
 
 See [Commands Reference](docs/COMMANDS-REFERENCE.md) for INPUT/PROCESS/OUTPUT documentation for each command.
 
@@ -152,7 +161,7 @@ claude-code-starter-kit/
 │   │   ├── code-reviewer.md           #   sonnet — quality reviewer
 │   │   ├── validator.md               #   sonnet — test/lint/build runner
 │   │   └── investigator.md            #   sonnet — debugger & RCA
-│   ├── commands/                      # 15 slash commands
+│   ├── commands/                      # 16 slash commands
 │   │   ├── prime.md                   #   /prime — load context
 │   │   ├── plan.md                    #   /plan — create plan
 │   │   ├── execute.md                 #   /execute — implement from plan
@@ -163,6 +172,7 @@ claude-code-starter-kit/
 │   │   ├── create-prd.md              #   /create-prd — generate PRD
 │   │   ├── review.md                  #   /review — code review
 │   │   ├── execution-report.md        #   /execution-report — plan vs actual
+│   │   ├── system-review.md          #   /system-review — process improvements
 │   │   ├── code-review-fix.md         #   /code-review-fix — apply review fixes
 │   │   ├── refactor.md                #   /refactor — safe code restructuring
 │   │   ├── test.md                    #   /test — focused test generation
@@ -283,7 +293,7 @@ claude-code-starter-kit/
 | Document | Description |
 |----------|-------------|
 | [Getting Started](docs/GETTING-STARTED.md) | Installation, first feature, first bug fix |
-| [Commands Reference](docs/COMMANDS-REFERENCE.md) | All 15 commands with INPUT/PROCESS/OUTPUT and allowed tools |
+| [Commands Reference](docs/COMMANDS-REFERENCE.md) | All 16 commands with INPUT/PROCESS/OUTPUT and allowed tools |
 | [Architecture Guide](docs/ARCHITECTURE-GUIDE.md) | 5-layer stack, subagents, VSA, context engineering, migration |
 | [Customization](docs/CUSTOMIZATION.md) | Add rules, commands, skills, subagents, hooks, MCP servers |
 | [Troubleshooting](docs/TROUBLESHOOTING.md) | Common issues, permissions, platform-specific fixes |

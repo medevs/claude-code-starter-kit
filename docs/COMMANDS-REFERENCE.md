@@ -1,6 +1,6 @@
 # Commands Reference
 
-Complete reference for all 15 slash commands in the Claude Code Starter Kit.
+Complete reference for all 16 slash commands in the Claude Code Starter Kit.
 
 ## Overview
 
@@ -10,7 +10,7 @@ Commands live in `.claude/commands/` as markdown files with YAML frontmatter. Ea
 - **argument-hint** — Shows expected arguments (e.g., `<feature-description>`)
 - **allowed-tools** — Restricts which tools Claude can use during execution
 
-Commands are organized into four categories: Core PIV Loop, Pipeline, Extended, and Bugfix.
+Commands are organized into five categories: Core PIV Loop, Pipeline, Extended, Feedback Loop, and Bugfix.
 
 ---
 
@@ -241,7 +241,7 @@ Each step must pass its gate before the next begins:
 
 **PROCESS**:
 1. Extract requirements from conversation
-2. Synthesize into 13 structured sections (executive summary, user stories, architecture, tech stack, API spec, implementation phases, etc.)
+2. Synthesize into 15 structured sections (executive summary, user stories, architecture, tech stack, API spec, implementation phases, future considerations, etc.)
 3. Write the PRD with markdown formatting, checkboxes, and tables
 
 **OUTPUT**: PRD file at `.plans/prd-{name}.md`. Suggests next steps: review → `/plan <first-feature>` → `/build`.
@@ -373,6 +373,29 @@ Each step must pass its gate before the next begins:
 
 ---
 
+## Feedback Loop
+
+### `/system-review <plan-file> <execution-report-file>`
+
+| | |
+|---|---|
+| **Purpose** | Analyze implementation against plan for process improvements |
+| **Usage** | `/system-review .plans/feature.md .plans/reports/feature-report.md` |
+| **Allowed Tools** | `Read, Write, Glob, Grep, Bash(git:*)` |
+
+**INPUT**: A plan file ($1) and an execution report ($2). Also reads the plan and execute command templates for context.
+
+**PROCESS**:
+1. Understand the planned approach — extract planned features, architecture, validation steps, patterns
+2. Understand the actual implementation — extract what was done, divergences, challenges, skips
+3. Classify each divergence as Good (justified) or Bad (problematic)
+4. Trace root causes of problematic divergences (unclear plan, missing context, missing validation)
+5. Generate process improvements targeting CLAUDE.md, plan command, execute command, new commands
+
+**OUTPUT**: System review at `.plans/system-reviews/{feature-name}-review.md` with alignment score (X/10), divergence analysis, pattern compliance checklist, system improvement actions, and key learnings.
+
+---
+
 ## Bugfix Commands
 
 Namespaced under `bugfix/` directory — a pattern for grouping related commands.
@@ -438,4 +461,5 @@ Namespaced under `bugfix/` directory — a pattern for grouping related commands
 | `/refactor` | `<scope>` | Read, Write, Edit, Bash, Glob, Grep, Agent | `.plans/refactors/` + Git commits |
 | `/test` | `<file-or-module>` | Read, Write, Edit, Bash, Glob, Grep, Agent | Test files + Console |
 | `/rca` | `<issue-or-desc>` | Read, Write, Glob, Grep, Bash(git), Bash(gh), Agent | `.plans/rca-{id}.md` |
+| `/system-review` | `<plan> <report>` | Read, Write, Glob, Grep, Bash(git) | `.plans/system-reviews/` |
 | `/fix` | `<issue-id>` | Read, Write, Edit, Bash, Glob, Grep, Agent | Console + suggested commit |
