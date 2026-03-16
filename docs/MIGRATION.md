@@ -183,7 +183,7 @@ cp -r /tmp/claude-starter-kit/.claude/rules/ .claude/rules/
 
 Add `@.claude/rules/<name>.md` imports to your CLAUDE.md for each rule you want active.
 
-### Just the PIV Loop
+### Just the Core Workflow
 
 Copy only the 5 core commands + the build pipeline:
 

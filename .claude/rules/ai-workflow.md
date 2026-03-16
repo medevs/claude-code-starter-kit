@@ -6,7 +6,7 @@
 - Search with glob/grep before reading — never read entire directories
 - Verify each change compiles/passes before moving to the next file
 - Prefer reading public APIs/interfaces over implementation details
-- Keep iterations small — when in doubt, go smaller. Break complex features into multiple PIV loops
+- Keep iterations small — when in doubt, go smaller. Break complex features into multiple plan-implement-validate loops
 - Small scope + good system = incredible results, even for advanced features built over many loops
 
 ## Verification (Highest Priority)
@@ -67,5 +67,5 @@ Use sub-agents to keep the main context focused on implementation:
 
 - **Is it constant and needed every session?** → Global rules (CLAUDE.md / .claude/rules/)
 - **Is it a repeated task-type pattern?** → On-demand context (skills / reference guides loaded by commands)
-- **Is it specific to this feature?** → Layer 2 planning (structured plan for this PIV loop)
+- **Is it specific to this feature?** → Layer 2 planning (structured plan for this development loop)
 - Principles go in rules. Workflows go in commands. Never mix them.

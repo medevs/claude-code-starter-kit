@@ -13,14 +13,14 @@ Turn Claude Code from a blank canvas into a structured development engine. Go fr
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Slash commands | 16 | 5 PIV loop + 1 pipeline + 8 extended + 2 bugfix |
+| Slash commands | 16 | 5 core + 1 pipeline + 8 extended + 2 bugfix |
 | Rules | 8 | 6 universal + 2 path-targeted (api/, frontend/) |
-| Skills | 12 | 1 custom + 11 from ecosystem (anthropics, vercel, obra, supercent, mattpocock) |
+| Skills | 16 | 5 custom + 11 from ecosystem (anthropics, vercel, obra, supercent, mattpocock) |
 | Subagents | 5 | 1 haiku (fast research) + 4 sonnet (reasoning) |
 | Safety hooks | 5 | Command blocker, auto-formatter, auto-linter, branch protection, completion notifier |
 | Permission tiers | 3 | allow / ask / deny in settings.json |
 | MCP templates | 7 | Playwright, Supabase, GitHub, PostgreSQL, Memory, Fetch, Filesystem |
-| Rule templates | 4 | Next.js, FastAPI, CLI, AI Agents |
+| Rule templates | 6 | Next.js, FastAPI, CLI, AI Agents, Hono, React Native |
 | Skill templates | 10 | 2 custom + 8 from ecosystem (vercel, wshobson, supercent) |
 
 **JS/TS + Python focused** with injectable specializations for web apps, APIs, CLIs, and AI agents.
@@ -50,7 +50,7 @@ See [Getting Started](docs/GETTING-STARTED.md) for the full walkthrough with exp
 
 ---
 
-## The PIV Loop
+## The Core Workflow
 
 Five core commands form the Plan-Implement-Validate workflow:
 
@@ -69,7 +69,7 @@ Five core commands form the Plan-Implement-Validate workflow:
 
 ## All Commands
 
-### Core PIV Loop
+### Core Workflow
 
 | Command | Args | Allowed Tools | Output |
 |---------|------|---------------|--------|
@@ -115,6 +115,82 @@ See [Commands Reference](docs/COMMANDS-REFERENCE.md) for INPUT/PROCESS/OUTPUT do
 
 ---
 
+## The Agentic Coding Workflow
+
+This section explains **how to build software** with the starter kit — the methodology behind the commands.
+
+### Two-Tier Context System
+
+| Tier | What | How it loads | Examples |
+|------|------|-------------|----------|
+| **Always-on** | Rules, CLAUDE.md | Automatically every session | Code quality, testing, security, git workflow |
+| **On-demand** | Skills, plans, references | Activated when relevant or invoked | TDD methodology, debugging framework, PRD templates |
+
+Rules define *what* Claude must always follow. Skills provide *how* — loaded only when the task matches, keeping context lean.
+
+### Development Pipeline
+
+```
+┌─────────┐    ┌─────────┐    ┌─────────┐    ┌──────────┐    ┌─────────┐
+│  Prime  │───→│  Plan   │───→│ Execute │───→│ Validate │───→│ Commit  │
+└─────────┘    └─────────┘    └─────────┘    └──────────┘    └─────────┘
+  context        design       implement        verify          ship
+```
+
+| Phase | Kit command | What happens |
+|-------|-------------|-------------|
+| Context loading | `/prime` | Reads project structure, stack, git state |
+| Design | `/plan <feature>` | Creates implementation plan with confidence score |
+| Implementation | `/execute <plan>` | Implements from plan, validates per-task |
+| Verification | `/validate` | Runs lint, types, tests, build |
+| Shipping | `/commit` | Conventional commit with atomic changes |
+| **Full pipeline** | `/build <feature>` | Chains all above with gates between steps |
+
+### Validation Pyramid
+
+```
+         ┌───────────┐
+         │   Build   │   Can it compile/bundle?
+        ┌┴───────────┴┐
+        │    Tests    │   Does it behave correctly?
+       ┌┴─────────────┴┐
+       │  Type Checks  │   Are types consistent?
+      ┌┴───────────────┴┐
+      │     Linting     │   Does it follow conventions?
+     ┌┴─────────────────┴┐
+     │   Code Review     │   Is it maintainable?
+     └───────────────────┘
+```
+
+`/validate` runs all five levels. `/review` adds the human-quality code review layer.
+
+### Stress-Testing & Architecture
+
+- **`grill-me`** — Stress-test your plan before execution. Claude interviews you relentlessly about edge cases, trade-offs, and assumptions until the design is solid.
+- **`improve-codebase-architecture`** — Explore the codebase for architectural improvements: shallow modules, tight coupling, testability gaps. Produces RFCs, not direct changes.
+
+### Feedback Loops
+
+```
+/execution-report → /system-review → improve CLAUDE.md, commands, workflows
+```
+
+After each feature, capture what diverged from the plan, then analyze the process to improve the system itself.
+
+### Best Practices
+
+| Practice | Why |
+|----------|-----|
+| Small iterations | Each plan-implement-validate loop should be one logical change. Smaller scope = higher success rate. |
+| Subagent delegation | Use `researcher` (haiku) for codebase exploration. Keep the main context focused on implementation. |
+| Context budgeting | Run `/clear` between unrelated tasks. Keep sessions to 30-45 minutes. Context is a finite resource. |
+| Parallel execution with worktrees | When multiple features are independent, use worktrees so agents don't conflict on file edits. |
+| Vertical slices | Structure features as vertical slices (route + logic + data + tests) for parallel-safe development. |
+| Plan as checkpoint | Commit the plan before execution — enables rollback if implementation goes wrong. |
+| On-demand depth | Skills load overviews first, deep references only when needed. Don't front-load context you might not use. |
+
+---
+
 ## Layer Architecture
 
 ```
@@ -124,7 +200,7 @@ See [Commands Reference](docs/COMMANDS-REFERENCE.md) for INPUT/PROCESS/OUTPUT do
 ├─────────────────────────────────────────────┤
 │  Commands       (user-invoked)              │  16 commands with tool restrictions
 ├─────────────────────────────────────────────┤
-│  Skills         (auto-detected)             │  12 skills (1 custom + 11 ecosystem)
+│  Skills         (auto-detected)             │  16 skills (5 custom + 11 ecosystem)
 ├─────────────────────────────────────────────┤
 │  Subagents      (delegated)                 │  5 agents: researcher, planner, reviewer,
 │                                             │  validator, investigator
@@ -198,7 +274,7 @@ claude-code-starter-kit/
 │   │   │   └── api-patterns.md        #   Path-targeted: REST design, pagination
 │   │   └── frontend/
 │   │       └── ui-patterns.md         #   Path-targeted: UI design patterns
-│   ├── skills/                        # 12 auto-detected skills (1 custom + 11 ecosystem)
+│   ├── skills/                        # 16 auto-detected skills (5 custom + 11 ecosystem)
 │   │   ├── context-management/        #   Context window optimization
 │   │   ├── claude-api/                #   🌐 anthropics/skills — Claude API & SDK patterns
 │   │   ├── frontend-design/           #   🌐 anthropics/skills — Production-grade UI design
@@ -210,6 +286,10 @@ claude-code-starter-kit/
 │   │   ├── code-refactoring/          #   🌐 supercent-io — Safe code restructuring (10.8K)
 │   │   ├── task-planning/             #   🌐 supercent-io — Task planning & decomposition (10.6K)
 │   │   ├── tdd/                       #   🌐 mattpocock/skills — Test-driven development (3.3K)
+│   │   ├── grill-me/                  #   🌐 mattpocock/skills — Plan stress-testing interviews
+│   │   ├── write-a-prd/               #   🌐 mattpocock/skills — PRD through user interview
+│   │   ├── prd-to-issues/             #   🌐 mattpocock/skills — Break PRDs into GitHub issues
+│   │   ├── improve-codebase-architecture/ # 🌐 mattpocock/skills — Architecture improvement RFCs
 │   │   └── web-design-guidelines/     #   🌐 vercel-labs — UI review (100+ rules, 164K)
 │   └── mcp-templates/                 # 7 MCP server configs
 │       ├── fetch.json                 #   Web content fetching
@@ -228,11 +308,13 @@ claude-code-starter-kit/
 │   ├── TROUBLESHOOTING.md            #   Common issues and platform fixes
 │   └── FAQ.md                         #   Frequently asked questions
 └── templates/                         # Injectable specializations
-    ├── rules/                         # 4 framework-specific rule templates
+    ├── rules/                         # 6 framework-specific rule templates
     │   ├── nextjs.md                  #   Next.js 15+, React 19+, Tailwind v4
     │   ├── fastapi.md                 #   FastAPI, Pydantic 2.x, Python 3.12+
     │   ├── cli-tool.md                #   CLI applications
-    │   └── ai-agents.md              #   LLM-powered applications
+    │   ├── ai-agents.md              #   LLM-powered applications
+    │   ├── hono.md                    #   Hono 4.x+ edge-first API patterns
+    │   └── react-native.md            #   React Native / Expo SDK 52+
     └── skills/                        # 10 framework-specific skill templates (2 custom + 8 ecosystem)
         ├── agent-development/         #   Tool design, MCP, prompting
         ├── edge-api/                  #   Edge API patterns
@@ -258,6 +340,8 @@ claude-code-starter-kit/
 | `fastapi.md` | FastAPI 0.115+ | Pydantic 2.x, SQLAlchemy 2.0, async patterns, Python 3.12+ |
 | `cli-tool.md` | CLI apps | Argument parsing, output formatting, exit codes |
 | `ai-agents.md` | AI/LLM | Tool design, prompt engineering, MCP integration |
+| `hono.md` | Hono 4.x+ | Edge-first API patterns, middleware, TypeScript |
+| `react-native.md` | React Native / Expo | Expo SDK 52+, React Native 0.76+ |
 
 ### Skill Templates
 

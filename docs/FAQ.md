@@ -22,7 +22,7 @@ The kit is focused on **JavaScript/TypeScript and Python** projects. Framework-s
 
 No. The kit is designed for incremental adoption:
 1. **Start with rules** — just copy `.claude/rules/` for instant code quality improvements
-2. **Add commands** — copy `.claude/commands/` for the PIV workflow
+2. **Add commands** — copy `.claude/commands/` for the Plan-Implement-Validate workflow
 3. **Add skills** — copy `.claude/skills/` for auto-detected guidance
 4. **Add agents** — copy `.claude/agents/` for delegation
 5. **Add hooks** — copy `.claude/hooks/` and update `settings.json` for safety

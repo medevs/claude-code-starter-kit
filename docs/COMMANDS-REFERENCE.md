@@ -10,11 +10,11 @@ Commands live in `.claude/commands/` as markdown files with YAML frontmatter. Ea
 - **argument-hint** — Shows expected arguments (e.g., `<feature-description>`)
 - **allowed-tools** — Restricts which tools Claude can use during execution
 
-Commands are organized into five categories: Core PIV Loop, Pipeline, Extended, Feedback Loop, and Bugfix.
+Commands are organized into five categories: Core Workflow, Pipeline, Extended, Feedback Loop, and Bugfix.
 
 ---
 
-## Core PIV Loop
+## Core Workflow
 
 The five core commands that form the Plan-Implement-Validate workflow.
 
