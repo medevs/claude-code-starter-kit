@@ -111,3 +111,10 @@ All changes validated. Run `/commit` to commit.
 - Deviation types: Better approach found | Plan assumption wrong | Security concern | Performance issue | Missing context
 - If a test fails and the fix is non-obvious: describe the issue for review
 - If blocked on external dependencies: document and continue with what's possible
+
+## Next Steps
+
+- **Run validation:** → `/validate` for comprehensive checks
+- **Save your work:** → `/commit` (includes AI context tracking)
+- **Want reflection?** → `/execution-report` for plan-vs-actual analysis
+- **Session getting long?** → `/handoff` before continuing to preserve context

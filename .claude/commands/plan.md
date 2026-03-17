@@ -255,3 +255,10 @@ Report:
 - [ ] Tasks ordered by dependency (top-to-bottom)
 - [ ] Each task is atomic and independently testable
 - [ ] Pattern references include specific file:line numbers
+
+## Next Steps
+
+- **Commit the plan as a checkpoint:** `git add .plans/ && git commit -m "plan: <feature-name>"`
+- **Confidence ≥ 7/10?** → `/execute .plans/<feature-name>.md` (ideally in a fresh session for clean context)
+- **Confidence < 7?** → Refine the plan — research unknowns, add detail, resolve open questions
+- **Complex multi-phase plan?** → Consider `/handoff` and executing in a fresh session to preserve context budget

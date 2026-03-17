@@ -73,3 +73,9 @@ For each failure:
 - Describe the fix. Do NOT apply fixes automatically — run `/code-review-fix` or fix manually, then re-run `/validate`.
 
 Do NOT silently skip failing checks.
+
+## Next Steps
+
+- **All passing?** → `/commit`
+- **Failures found?** → Fix issues, then re-run `/validate`
+- **Want a code review first?** → `/review` before committing

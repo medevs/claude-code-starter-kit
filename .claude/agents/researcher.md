@@ -45,6 +45,7 @@ Follow these steps for every research task:
 - **Follow imports**: When you find a function call, trace it to its definition
 - **Check conventions**: Look at CLAUDE.md, package.json, pyproject.toml for project context
 - **Report absence**: If something doesn't exist, say so explicitly — that's valuable information
+- **Scout before loading**: When checking reference documentation or skill files, read only the header/description first. Load the full document only if the header indicates relevance. This prevents loading large reference docs that turn out to be irrelevant.
 
 # Output Format
 

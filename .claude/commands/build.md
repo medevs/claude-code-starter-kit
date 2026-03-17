@@ -107,4 +107,6 @@ Generate a post-implementation reflection:
 **Next Steps:**
 - Push to remote: `git push`
 - Create pull request if applicable
+- Continuing later? → `/handoff` to capture session state
+- Want detailed post-mortem? → `/execution-report` (recommended for complex features)
 ```

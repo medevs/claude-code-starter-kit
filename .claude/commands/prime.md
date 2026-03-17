@@ -13,6 +13,16 @@ allowed-tools: Read, Glob, Grep, Bash(git:*)
 - If a scope is provided (e.g., `frontend`, `api`, `auth`), focus priming on that area — read only files, entry points, and patterns relevant to the scope. Still read CLAUDE.md and project-level config, but skip unrelated directories.
 - If no scope is provided, perform full project priming.
 
+### Scoped Priming Guidelines
+
+When a scope is provided:
+- **Always read**: `CLAUDE.md` and any `.claude/rules/` files that match the scope (e.g., `.claude/rules/api/` for `api` scope)
+- **Focus on**: Entry points, key modules, and patterns within the scoped directory
+- **Skip**: Unrelated directories, test fixtures for other features, unrelated config
+- **Common scopes**: `frontend`, `api`, `backend`, `database`, `auth`, `testing`, `infra`
+
+Use scoped priming when you need depth in one area. Use full priming when you need breadth across the whole project.
+
 ## Objective
 
 Build comprehensive understanding of the codebase by analyzing structure, documentation, and key configuration.
@@ -106,3 +116,10 @@ Provide a structured summary:
 - Notable patterns or conventions
 - Potential areas of concern
 - Suggestions for next steps
+
+## Next Steps
+
+- **Have a feature to build?** → `/plan <feature>`
+- **Want the full pipeline?** → `/build <feature>`
+- **Just exploring?** → Use the researcher agent for targeted questions
+- **Need depth in a specific area?** → `/prime <scope>` (e.g., `/prime frontend`)

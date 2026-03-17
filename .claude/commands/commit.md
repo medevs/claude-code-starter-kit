@@ -57,6 +57,30 @@ Format:
 git commit -m "<generated message>"
 ```
 
+### 5.5. Capture AI Context Changes
+
+Check if any AI-layer files are in the staged diff:
+- `.claude/rules/` — conventions added, updated, or removed
+- `.claude/commands/` — slash commands created or modified
+- `.claude/skills/` — skill definitions or reference docs
+- `.claude/agents/` — agent definitions
+- `CLAUDE.md` — global rules changes
+
+If any are present, append a `Context:` footer to the commit body listing what changed:
+
+```
+feat(auth): add session token rotation
+
+Added automatic token rotation on refresh. Tokens now expire
+after 15 minutes instead of 24 hours.
+
+Context:
+- Updated .claude/rules/security.md with token rotation conventions
+- Added .claude/commands/audit-sessions.md for session inspection
+```
+
+**Why this matters:** Your git log is long-term memory. Future agents and sessions use `git log` to understand project history. If context changes aren't captured in commits, the AI layer's evolution becomes invisible.
+
 ### 6. Confirm
 
 ```bash
@@ -65,3 +89,10 @@ git status
 ```
 
 Report the commit hash and summary.
+
+## Next Steps
+
+- **Ready to push?** → `git push`
+- **Want reflection?** → `/execution-report`
+- **Starting new feature?** → `/prime` then `/plan`
+- **Ending session?** → `/handoff`

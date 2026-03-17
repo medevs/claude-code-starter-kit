@@ -69,3 +69,40 @@ Use subagents to keep the main context focused on implementation:
 - **Is it a repeated task-type pattern?** → On-demand context (skills / reference guides loaded by commands)
 - **Is it specific to this feature?** → Layer 2 planning (structured plan for this development loop)
 - Principles go in rules. Workflows go in commands. Never mix them.
+
+## Session Lifecycle
+
+### Write — Externalize Knowledge
+
+- Plans go in `.plans/` — never keep a plan only in conversation context
+- Enriched commits with `Context:` footers make the AI layer's evolution visible in git log
+- Handoff documents (`HANDOFF.md`) capture session state for continuation
+- Git log IS long-term memory — write commits as if the next reader is an AI agent
+
+### Isolate — Protect Context from Pollution
+
+- Delegate research to subagents — keeps main context focused on implementation
+- **Scout pattern**: When checking reference docs or skill files, read only the header/description first. Load the full document only if the header indicates relevance
+- Never load large reference documents directly into main context — use a researcher agent
+- Use worktrees when multiple agents need to edit files simultaneously
+
+### Select — Load Only What's Needed
+
+- `/prime [scope]` loads only the relevant slice of the codebase
+- Path-scoped rules (e.g., `.claude/rules/api/`) auto-load only when working in matching paths
+- Progressive disclosure: start with interfaces and public APIs, drill into implementation only when needed
+- Read CLAUDE.md every session, but load scope-specific rules on demand
+
+### Compress — Manage Context Proactively
+
+- Run `/handoff` proactively before hitting context limits, not reactively after
+- When using `/compact`, always provide explicit instructions about what to preserve vs. discard — never compact without specifying what to keep
+- Start fresh sessions for execution after planning — don't carry planning context into implementation
+- **Signs of context pressure**: repeated tool errors, forgotten earlier decisions, circular reasoning, re-reading files already analyzed
+
+## Focused Compaction
+
+When context grows large, compact with explicit preservation instructions:
+- Specify which decisions, patterns, and file paths must be retained
+- Specify what can be discarded (exploration paths, verbose tool output, rejected approaches)
+- Never run `/compact` without telling it what to keep
