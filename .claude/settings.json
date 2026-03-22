@@ -34,7 +34,6 @@
       "Bash(git reset --hard)*", "Bash(git clean -f)*",
       "Bash(chmod 777*)",
       "Bash(mkfs*)",
-      "Bash(:*)",
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)",
       "Read(~/.gnupg/**)",
