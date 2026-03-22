@@ -56,8 +56,8 @@
 **Symptom**: Files are reformatted after every edit, or formatting conflicts with your style.
 
 **Fix**:
-1. The `auto-format.sh` hook detects your formatter from config files (biome.json, .prettierrc, pyproject.toml with ruff, etc.)
-2. If no formatter config exists, the hook does nothing
+1. The `auto-format.sh` hook is opt-in (not active by default). If you enabled it, it detects your formatter from config files (biome.json, .prettierrc, pyproject.toml with ruff, etc.)
+2. If no formatter config exists, the hook does nothing — but `npx` startup still adds latency
 3. To disable: remove the `PostToolUse` entry from `.claude/settings.json`
 4. To change formatter: add/modify your formatter config file — the hook will detect it automatically
 

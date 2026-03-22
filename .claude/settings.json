@@ -34,7 +34,7 @@
       "Bash(git reset --hard)*", "Bash(git clean -f)*",
       "Bash(chmod 777*)",
       "Bash(mkfs*)",
-      "Bash(:(){ :|:&};:)*",
+      "Bash(:*)",
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)",
       "Read(~/.gnupg/**)",
@@ -50,50 +50,11 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": ".claude/hooks/branch-protection.sh",
-            "timeout": 5000
-          }
-        ]
-      },
-      {
         "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
             "command": ".claude/hooks/block-dangerous-commands.sh",
-            "timeout": 5000
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": ".claude/hooks/auto-format.sh",
-            "timeout": 30000
-          },
-          {
-            "type": "command",
-            "command": ".claude/hooks/auto-lint.sh",
-            "timeout": 30000
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": ".claude/hooks/notify-completion.sh",
             "timeout": 5000
           }
         ]

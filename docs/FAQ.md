@@ -127,19 +127,19 @@ Sensitive file access (`.env`, `.pem`, credentials) triggers a confirmation prom
 
 ### What hooks are included?
 
-The starter kit includes 5 hooks across 3 event types:
+The starter kit includes 5 hook scripts. Only `block-dangerous-commands.sh` is active by default — the others are available in `.claude/hooks/` and can be enabled in `.claude/settings.json`:
 
-| Hook | Event | Purpose |
-|------|-------|---------|
-| `block-dangerous-commands.sh` | PreToolUse | Blocks destructive shell commands |
-| `branch-protection.sh` | PreToolUse | Warns when editing on main/master |
-| `auto-format.sh` | PostToolUse | Auto-formats files after edits |
-| `auto-lint.sh` | PostToolUse | Runs linter after edits for immediate feedback |
-| `notify-completion.sh` | Stop | Desktop notification when Claude finishes |
+| Hook | Event | Default | Purpose |
+|------|-------|---------|---------|
+| `block-dangerous-commands.sh` | PreToolUse | **Active** | Blocks destructive shell commands |
+| `branch-protection.sh` | PreToolUse | Opt-in | Warns when editing on main/master |
+| `auto-format.sh` | PostToolUse | Opt-in | Auto-formats files after edits |
+| `auto-lint.sh` | PostToolUse | Opt-in | Runs linter after edits for immediate feedback |
+| `notify-completion.sh` | Stop | Opt-in | Desktop notification when Claude finishes |
 
-### Can I disable hooks?
+### Can I enable/disable hooks?
 
-Yes. Remove the hook entry from `.claude/settings.json` under the `hooks` section. Remove individual hooks from the `PreToolUse`, `PostToolUse`, or `Stop` arrays. **Not recommended** — hooks are your safety net.
+Yes. Add or remove hook entries in `.claude/settings.json` under the `hooks` section. See [Customization](./CUSTOMIZATION.md) for examples of how to enable each hook.
 
 ### How does the 3-tier permission system work?
 

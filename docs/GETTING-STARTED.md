@@ -134,7 +134,7 @@ The starter kit has five layers that work together:
 | **Commands** | `.claude/commands/` | User-invoked (`/command`) | Workflows: plan, build, validate, commit |
 | **Skills** | `.claude/skills/` | Auto-detected | Expertise: context management, debugging, planning |
 | **Subagents** | `.claude/agents/` | Delegated by commands | Workers: researcher, planner, reviewer, validator, investigator |
-| **Hooks** | `.claude/hooks/` | Pre/post tool use + stop | Safety: block dangerous commands, branch protection, auto-format, auto-lint, completion notifications |
+| **Hooks** | `.claude/hooks/` | Pre/post tool use + stop | Safety: block dangerous commands (active by default); branch protection, auto-format, auto-lint, completion notifications (opt-in) |
 
 For the full architecture explanation, see [Architecture Guide](./ARCHITECTURE-GUIDE.md).
 

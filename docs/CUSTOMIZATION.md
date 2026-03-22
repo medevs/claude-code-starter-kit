@@ -502,30 +502,32 @@ Or use `/setup` to configure them interactively.
 
 ### Included Hooks
 
-**PreToolUse — Block Dangerous Commands** (`.claude/hooks/block-dangerous-commands.sh`)
+Only `block-dangerous-commands.sh` is active by default. The other 4 hooks are available in `.claude/hooks/` and can be enabled by adding them to `.claude/settings.json`.
+
+**PreToolUse — Block Dangerous Commands** (`.claude/hooks/block-dangerous-commands.sh`) — **Active by default**
 - Blocks destructive shell commands (rm -rf /, force push, DROP TABLE, pipe-to-shell, fork bombs)
 - Prompts for confirmation on sensitive file access (.env, .pem, credentials)
 - Receives JSON on stdin with `tool_name` and `tool_input`
 
-**PreToolUse — Branch Protection** (`.claude/hooks/branch-protection.sh`)
+**PreToolUse — Branch Protection** (`.claude/hooks/branch-protection.sh`) — **Opt-in**
 - Warns when Write/Edit operations are attempted on `main` or `master` branch
 - Prompts user to create a feature branch first
-- Uses `permissionDecision: "ask"` — the user can override if needed
+- Note: This prompts on every file edit while on main, which can be noisy for solo developers
 
-**PostToolUse — Auto-Format** (`.claude/hooks/auto-format.sh`)
+**PostToolUse — Auto-Format** (`.claude/hooks/auto-format.sh`) — **Opt-in**
 - Auto-formats files after Write/Edit operations
 - Detects project formatter from config files (Biome, Prettier, Ruff)
-- Non-blocking — runs after the tool completes
+- Note: Requires a formatter to be installed — runs `npx` on every edit which adds latency
 
-**PostToolUse — Auto-Lint** (`.claude/hooks/auto-lint.sh`)
+**PostToolUse — Auto-Lint** (`.claude/hooks/auto-lint.sh`) — **Opt-in**
 - Runs linter on files after Write/Edit operations (separate from formatting)
 - Detects project linter: Biome, ESLint (JS/TS) or Ruff (Python)
-- Provides immediate lint feedback so Claude can fix issues in the same session
+- Note: Requires a linter to be installed — adds latency after every edit
 
-**Stop — Completion Notification** (`.claude/hooks/notify-completion.sh`)
+**Stop — Completion Notification** (`.claude/hooks/notify-completion.sh`) — **Opt-in**
 - Sends a desktop notification when Claude finishes a task
 - Cross-platform: macOS (osascript), Linux (notify-send), Windows (PowerShell)
-- Prevents wasted idle time when Claude is running long tasks
+- Note: On Windows, launches a PowerShell popup which can be slow
 
 ### Hook Configuration in settings.json
 
@@ -536,53 +538,48 @@ Hooks are configured in `.claude/settings.json` using this format:
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": ".claude/hooks/branch-protection.sh",
-            "timeout": 5000
-          }
-        ]
-      },
-      {
         "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/my-hook.sh",
+            "command": ".claude/hooks/block-dangerous-commands.sh",
             "timeout": 5000
           }
         ]
+      }
+    ]
+  }
+}
+```
+
+To enable optional hooks, add entries to the appropriate event arrays:
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [{ "type": "command", "command": ".claude/hooks/block-dangerous-commands.sh", "timeout": 5000 }]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [{ "type": "command", "command": ".claude/hooks/branch-protection.sh", "timeout": 5000 }]
       }
     ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit",
         "hooks": [
-          {
-            "type": "command",
-            "command": ".claude/hooks/auto-format.sh",
-            "timeout": 30000
-          },
-          {
-            "type": "command",
-            "command": ".claude/hooks/auto-lint.sh",
-            "timeout": 30000
-          }
+          { "type": "command", "command": ".claude/hooks/auto-format.sh", "timeout": 30000 },
+          { "type": "command", "command": ".claude/hooks/auto-lint.sh", "timeout": 30000 }
         ]
       }
     ],
     "Stop": [
       {
         "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": ".claude/hooks/notify-completion.sh",
-            "timeout": 5000
-          }
-        ]
+        "hooks": [{ "type": "command", "command": ".claude/hooks/notify-completion.sh", "timeout": 5000 }]
       }
     ]
   }

@@ -902,12 +902,12 @@ your-project/
 │   │   ├── refactor.md              ├── test.md
 │   │   └── bugfix/
 │   │       ├── rca.md               └── fix.md
-│   ├── hooks/                       # 5 safety & automation hooks
-│   │   ├── block-dangerous-commands.sh
-│   │   ├── branch-protection.sh
-│   │   ├── auto-format.sh
-│   │   ├── auto-lint.sh
-│   │   └── notify-completion.sh
+│   ├── hooks/                       # Safety & automation hooks (1 active, 4 opt-in)
+│   │   ├── block-dangerous-commands.sh  # Active by default
+│   │   ├── branch-protection.sh         # Opt-in
+│   │   ├── auto-format.sh              # Opt-in
+│   │   ├── auto-lint.sh                # Opt-in
+│   │   └── notify-completion.sh         # Opt-in
 │   ├── rules/                       # 8 auto-loaded rules
 │   │   ├── code-quality.md          ├── testing.md
 │   │   ├── git-workflow.md          ├── security.md
