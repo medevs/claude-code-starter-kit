@@ -23,10 +23,11 @@ Configure this starter kit for your specific project. This wizard will populate 
 **Phase A: Primary framework (exactly one)**
 > What are you building?
 > 1. **Next.js web app** (React, App Router, Tailwind)
-> 2. **FastAPI backend** (Python, async, SQLAlchemy)
-> 3. **CLI tool** (Node.js or Python command-line application)
-> 4. **AI Agent** (LLM-powered, JS/TS or Python)
-> 5. **Custom** (JS/TS or Python — I'll specify)
+> 2. **Express API** (Node.js/TypeScript REST backend)
+> 3. **FastAPI backend** (Python, async, SQLAlchemy)
+> 4. **CLI tool** (Node.js or Python command-line application)
+> 5. **AI Agent** (LLM-powered, JS/TS or Python)
+> 6. **Custom** (JS/TS or Python — I'll specify)
 
 **Phase B: Additional capabilities (zero or more)**
 > Would you like to add any additional skill sets?
@@ -77,6 +78,7 @@ Edit the template sections in CLAUDE.md:
 **b. Copy Matching Template Rules**
 Based on the detected/chosen stack, copy relevant templates from `templates/rules/` to `.claude/rules/`:
 - Next.js project → copy `templates/rules/nextjs.md` → `.claude/rules/nextjs.md`
+- Express API → copy `templates/rules/express.md` → `.claude/rules/express.md`
 - FastAPI project → copy `templates/rules/fastapi.md` → `.claude/rules/fastapi.md`
 - CLI tool → copy `templates/rules/cli-tool.md` → `.claude/rules/cli-tool.md`
 - AI Agent → copy `templates/rules/ai-agents.md` → `.claude/rules/ai-agents.md`
@@ -88,6 +90,7 @@ Based on the stack and Phase B selections, copy skill templates to `.claude/skil
 
 **Default combinations (auto-included with primary framework):**
 - Next.js → `vercel-react-best-practices/` + `vercel-composition-patterns/` + `nextjs-app-router-patterns/`
+- Express API → `express-typescript/` + `express-production/` + `api-design/`
 - FastAPI → `api-design/` + `database-schema-design/` + `fastapi-templates/` + `python-performance-optimization/`
 - CLI tool → (no default skills)
 - AI Agent → `agent-development/`

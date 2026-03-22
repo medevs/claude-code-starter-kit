@@ -21,6 +21,16 @@
       "sourceType": "github",
       "computedHash": "4c33e1db0dbbe6f7c4c99a8a4d38b695d8bc417bcad3f18a34543c8d9bceb79d"
     },
+    "express-production": {
+      "source": "bobmatnyc/claude-mpm-skills",
+      "sourceType": "github",
+      "computedHash": "1f2757c681d7f0f1a7e55398c12f5382f08437a5757010bdbff078fb28691d23"
+    },
+    "express-typescript": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "computedHash": "77bf2fb3933e0487ba30d6269342d5b1ce02210f3aee892cd202e295b9fde99a"
+    },
     "fastapi-templates": {
       "source": "wshobson/agents",
       "sourceType": "github",

@@ -26,18 +26,18 @@ Any developer using Claude Code who wants a repeatable workflow instead of ad-ho
 
 ## What You Get
 
-16 commands, 8 rules, 16 skills, 5 subagents, 4 hooks — all pre-configured.
+16 commands, 8 rules, 18 skills, 5 subagents, 4 hooks — all pre-configured.
 
 | Category | Count | Details |
 |----------|-------|---------|
 | Slash commands | 16 | 5 core + 1 pipeline + 8 extended + 2 bugfix |
 | Rules | 8 | 6 universal + 2 path-targeted (api/, frontend/) |
-| Skills | 16 | 5 custom + 11 from ecosystem (anthropics, vercel, obra, supercent, mattpocock) |
+| Skills | 18 | 5 custom + 13 from ecosystem (anthropics, vercel, obra, supercent, mattpocock, mindrally, bobmatnyc) |
 | Subagents | 5 | 1 haiku (fast research) + 4 sonnet (reasoning) |
 | Safety hooks | 4 | Command blocker, auto-formatter, auto-linter, branch protection |
 | Permission tiers | 3 | allow / ask / deny in settings.json |
 | MCP templates | 7 | Playwright, Supabase, GitHub, PostgreSQL, Memory, Fetch, Filesystem |
-| Rule templates | 6 | Next.js, FastAPI, CLI, AI Agents, Hono, React Native |
+| Rule templates | 7 | Next.js, Express, FastAPI, CLI, AI Agents, Hono, React Native |
 | Skill templates | 10 | 2 custom + 8 from ecosystem (vercel, wshobson, supercent) |
 
 **JS/TS + Python focused** with injectable specializations for web apps, APIs, CLIs, and AI agents.

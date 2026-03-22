@@ -36,3 +36,14 @@ Thumbs.db
 
 # Development prompts (starter kit build artifacts)
 .prompts/
+
+# Test project (local testing only)
+test-project/
+
+# Other agent directories (installed by npx skills, only .claude/ is tracked)
+.agent/
+.agents/
+.kilocode/
+.kiro/
+.trae/
+.windsurf/
