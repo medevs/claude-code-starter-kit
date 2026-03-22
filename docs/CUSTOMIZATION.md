@@ -524,11 +524,6 @@ Only `block-dangerous-commands.sh` is active by default. The other 4 hooks are a
 - Detects project linter: Biome, ESLint (JS/TS) or Ruff (Python)
 - Note: Requires a linter to be installed — adds latency after every edit
 
-**Stop — Completion Notification** (`.claude/hooks/notify-completion.sh`) — **Opt-in**
-- Sends a desktop notification when Claude finishes a task
-- Cross-platform: macOS (osascript), Linux (notify-send), Windows (PowerShell)
-- Note: On Windows, launches a PowerShell popup which can be slow
-
 ### Hook Configuration in settings.json
 
 Hooks are configured in `.claude/settings.json` using this format:
@@ -576,13 +571,7 @@ To enable optional hooks, add entries to the appropriate event arrays:
         ]
       }
     ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [{ "type": "command", "command": ".claude/hooks/notify-completion.sh", "timeout": 5000 }]
-      }
-    ]
-  }
+}
 }
 ```
 

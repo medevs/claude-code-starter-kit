@@ -127,7 +127,7 @@ Sensitive file access (`.env`, `.pem`, credentials) triggers a confirmation prom
 
 ### What hooks are included?
 
-The starter kit includes 5 hook scripts. Only `block-dangerous-commands.sh` is active by default — the others are available in `.claude/hooks/` and can be enabled in `.claude/settings.json`:
+The starter kit includes 4 hook scripts. Only `block-dangerous-commands.sh` is active by default — the others are available in `.claude/hooks/` and can be enabled in `.claude/settings.json`:
 
 | Hook | Event | Default | Purpose |
 |------|-------|---------|---------|
@@ -135,7 +135,6 @@ The starter kit includes 5 hook scripts. Only `block-dangerous-commands.sh` is a
 | `branch-protection.sh` | PreToolUse | Opt-in | Warns when editing on main/master |
 | `auto-format.sh` | PostToolUse | Opt-in | Auto-formats files after edits |
 | `auto-lint.sh` | PostToolUse | Opt-in | Runs linter after edits for immediate feedback |
-| `notify-completion.sh` | Stop | Opt-in | Desktop notification when Claude finishes |
 
 ### Can I enable/disable hooks?
 

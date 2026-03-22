@@ -26,7 +26,7 @@ Any developer using Claude Code who wants a repeatable workflow instead of ad-ho
 
 ## What You Get
 
-16 commands, 8 rules, 16 skills, 5 subagents, 5 hooks — all pre-configured.
+16 commands, 8 rules, 16 skills, 5 subagents, 4 hooks — all pre-configured.
 
 | Category | Count | Details |
 |----------|-------|---------|
@@ -34,7 +34,7 @@ Any developer using Claude Code who wants a repeatable workflow instead of ad-ho
 | Rules | 8 | 6 universal + 2 path-targeted (api/, frontend/) |
 | Skills | 16 | 5 custom + 11 from ecosystem (anthropics, vercel, obra, supercent, mattpocock) |
 | Subagents | 5 | 1 haiku (fast research) + 4 sonnet (reasoning) |
-| Safety hooks | 5 | Command blocker, auto-formatter, auto-linter, branch protection, completion notifier |
+| Safety hooks | 4 | Command blocker, auto-formatter, auto-linter, branch protection |
 | Permission tiers | 3 | allow / ask / deny in settings.json |
 | MCP templates | 7 | Playwright, Supabase, GitHub, PostgreSQL, Memory, Fetch, Filesystem |
 | Rule templates | 6 | Next.js, FastAPI, CLI, AI Agents, Hono, React Native |
@@ -121,7 +121,7 @@ claude-code-starter-kit/
 │   ├── settings.json             # Permissions (allow/ask/deny), hooks, MCP
 │   ├── agents/                   # 5 subagents (researcher, planner, code-reviewer, validator, investigator)
 │   ├── commands/                 # 16 slash commands
-│   ├── hooks/                    # 5 hooks (safety + automation)
+│   ├── hooks/                    # 4 hooks (safety + automation)
 │   ├── rules/                    # 8 auto-loaded rules (+ path-targeted for api/, frontend/)
 │   ├── skills/                   # 16 auto-detected skills (5 custom + 11 ecosystem)
 │   └── mcp-templates/            # 7 MCP server configs

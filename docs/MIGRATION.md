@@ -173,7 +173,7 @@ You get all 16 slash commands. Commands reference rules and agents, so you may w
 cp -r /tmp/claude-starter-kit/.claude/hooks/ .claude/hooks/
 ```
 
-You get all 5 hook scripts. Only `block-dangerous-commands.sh` is active by default. Enable the others (branch protection, auto-formatter, auto-linter, completion notifier) by adding them to `.claude/settings.json` — see [Customization](./CUSTOMIZATION.md) for examples.
+You get all 4 hook scripts. Only `block-dangerous-commands.sh` is active by default. Enable the others (branch protection, auto-formatter, auto-linter) by adding them to `.claude/settings.json` — see [Customization](./CUSTOMIZATION.md) for examples.
 
 ### Just Rules
 

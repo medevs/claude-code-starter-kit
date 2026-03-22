@@ -49,7 +49,7 @@ The kit is built on five layers, each with a distinct role. They activate at dif
 | **Rules** | 8 | `code-quality`, `testing`, `git-workflow`, `security`, `architecture`, `ai-workflow` + 2 path-targeted (`api/`, `frontend/`) |
 | **Skills** | 16 | 5 custom (`context-management`, `grill-me`, `improve-codebase-architecture`, `creating-skills`, `delegation`) + 11 ecosystem |
 | **Subagents** | 5 | `researcher` (haiku), `planner` (sonnet), `code-reviewer` (sonnet), `validator` (sonnet), `investigator` (sonnet) |
-| **Safety Hooks** | 5 | `block-dangerous-commands`, `branch-protection`, `auto-format`, `auto-lint`, `notify-completion` |
+| **Safety Hooks** | 4 | `block-dangerous-commands`, `branch-protection`, `auto-format`, `auto-lint` |
 | **MCP Templates** | 7 | Playwright, Supabase, GitHub, PostgreSQL, Memory, Fetch, Filesystem |
 | **Rule Templates** | 6 | Next.js, FastAPI, CLI, AI Agents, Hono, React Native |
 | **Skill Templates** | 10 | 2 custom + 8 ecosystem (Vercel, wshobson, supercent) |
@@ -62,7 +62,7 @@ When you run `/build add user authentication`, here's what each layer does:
 2. **Command** (`/build`): Chains `/prime` → `/plan` → `/execute` → `/validate` → `/commit` with gates between each step.
 3. **Skills** (auto-detected): Context management skill activates to guide efficient file reading. Planning skill activates during `/plan`. Delegation skill activates when deciding whether to use subagents.
 4. **Subagents** (delegated): The `researcher` (haiku) explores the codebase in parallel. The `planner` (sonnet) designs the implementation plan. The `validator` (sonnet) runs checks.
-5. **Hooks** (safety net): `branch-protection` warns if you're on main. `block-dangerous-commands` prevents destructive operations. `auto-format` and `auto-lint` clean up code after each edit. `notify-completion` pings you when done.
+5. **Hooks** (safety net): `branch-protection` warns if you're on main. `block-dangerous-commands` prevents destructive operations. `auto-format` and `auto-lint` clean up code after each edit.
 
 ```
 User runs /build
@@ -902,12 +902,11 @@ your-project/
 │   │   ├── refactor.md              ├── test.md
 │   │   └── bugfix/
 │   │       ├── rca.md               └── fix.md
-│   ├── hooks/                       # Safety & automation hooks (1 active, 4 opt-in)
+│   ├── hooks/                       # Safety & automation hooks (1 active, 3 opt-in)
 │   │   ├── block-dangerous-commands.sh  # Active by default
 │   │   ├── branch-protection.sh         # Opt-in
 │   │   ├── auto-format.sh              # Opt-in
-│   │   ├── auto-lint.sh                # Opt-in
-│   │   └── notify-completion.sh         # Opt-in
+│   │   └── auto-lint.sh                # Opt-in
 │   ├── rules/                       # 8 auto-loaded rules
 │   │   ├── code-quality.md          ├── testing.md
 │   │   ├── git-workflow.md          ├── security.md
